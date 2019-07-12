@@ -1,0 +1,195 @@
+﻿@model IEnumerable<isTakibiWeb.Models.TBLPERSONEL>
+@{
+    ViewBag.Title = "PersonelListele";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<h2>PersonelListele</h2>
+
+
+@using (Html.BeginForm("PersonelListele", "Home", FormMethod.Get))
+{
+    <p>
+
+        
+        <input type="submit" value="Filtrele" />
+        search:@Html.TextBox("aranacakKelime")
+
+    </p>
+}
+
+
+
+<div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Tables</li>
+    </ol>
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> personel tablosu
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.REC_ID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.REC_DATE)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.REC_USERNAME)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.REC_USERNO)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.REC_UPDATE)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.REC_UPUSERNAME)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.REC_UPUSERNO)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.REC_CHANGED)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.REC_VERSION)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PERSONEL_KOD)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PERSONEL_ADI)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PERSONEL_SOYADI)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TEL_NO)
+                            </th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.REC_ID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.REC_DATE)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.REC_USERNAME)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.REC_USERNO)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.REC_UPDATE)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.REC_UPUSERNAME)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.REC_UPUSERNO)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.REC_CHANGED)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.REC_VERSION)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PERSONEL_KOD)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PERSONEL_ADI)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PERSONEL_SOYADI)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TEL_NO)
+                            </th>
+
+                            <th></th>
+                        </tr>
+
+                    </tfoot>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.REC_ID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.REC_DATE)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.REC_USERNAME)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.REC_USERNO)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.REC_UPDATE)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.REC_UPUSERNAME)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.REC_UPUSERNO)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.REC_CHANGED)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.REC_VERSION)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PERSONEL_KOD)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PERSONEL_ADI)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PERSONEL_SOYADI)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TEL_NO)
+                                </td>
+
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.PERSONEL_KOD }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.PERSONEL_KOD }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.PERSONEL_KOD })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+</a>
+
+
