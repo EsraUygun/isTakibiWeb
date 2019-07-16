@@ -13,10 +13,10 @@ namespace isTakibiWeb.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class isTakipEntities : DbContext
+    public partial class isTakipEntities1 : DbContext
     {
-        public isTakipEntities()
-            : base("name=isTakipEntities")
+        public isTakipEntities1()
+            : base("name=isTakipEntities1")
         {
         }
     
@@ -25,12 +25,12 @@ namespace isTakibiWeb.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<TBLDOKUMAN> TBLDOKUMAN { get; set; }
         public virtual DbSet<TBLGOREV> TBLGOREV { get; set; }
         public virtual DbSet<TBLKULLANICI> TBLKULLANICI { get; set; }
         public virtual DbSet<TBLPERSONEL> TBLPERSONEL { get; set; }
         public virtual DbSet<TBLPROJE> TBLPROJE { get; set; }
-        public virtual DbSet<TBLYETKI> TBLYETKI { get; set; }
-        public virtual DbSet<TBLDOKUMAN> TBLDOKUMAN { get; set; }
         public virtual DbSet<TBLPROJEPERSONEL> TBLPROJEPERSONEL { get; set; }
+        public virtual DbSet<TBLYETKI> TBLYETKI { get; set; }
     }
 }

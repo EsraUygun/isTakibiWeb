@@ -4,21 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="004a8de711be4f6bbe2e71b86af9059f" Name="Diagram1">
-        <EntityTypeShape EntityType="isTakipModel.TBLGOREV" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="isTakipModel.TBLKULLANICI" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="isTakipModel.TBLPERSONEL" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="isTakipModel.TBLPROJE" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="isTakipModel.TBLYETKI" Width="1.5" PointX="5.25" PointY="15.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="isTakipModel.TBLDOKUMAN" Width="1.5" PointX="8.25" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="isTakipModel.TBLPROJEPERSONEL" Width="1.5" PointX="6" PointY="8" IsExpanded="true" />
+      <Diagram DiagramId="3b8d3c43eadb48cba0d01e6dc3ddfc32" Name="Diagram1">
+        <EntityTypeShape EntityType="isTakipModel.TBLDOKUMAN" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="isTakipModel.TBLGOREV" Width="1.5" PointX="6" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="isTakipModel.TBLKULLANICI" Width="1.5" PointX="6" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="isTakipModel.TBLPERSONEL" Width="1.5" PointX="3.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="isTakipModel.TBLPROJE" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="isTakipModel.TBLPROJEPERSONEL" Width="1.5" PointX="9" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="isTakipModel.TBLYETKI" Width="1.5" PointX="8.25" PointY="1.375" IsExpanded="true" />
         <AssociationConnector Association="isTakipModel.FK__TBLDOKUMA__GOREV__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="isTakipModel.FK__TBLDOKUMA__PROJE__5AEE82B9" ManuallyRouted="false" />
         <AssociationConnector Association="isTakipModel.FK__TBLGOREV__PERSON__5535A963" ManuallyRouted="false" />
         <AssociationConnector Association="isTakipModel.FK__TBLGOREV__PROJE___5629CD9C" ManuallyRouted="false" />
         <AssociationConnector Association="isTakipModel.FK__TBLKULLAN__PERSO__3F466844" ManuallyRouted="false" />
         <AssociationConnector Association="isTakipModel.FK__TBLYETKI__KULLAN__44FF419A" ManuallyRouted="false" />
         <AssociationConnector Association="isTakipModel.FK__TBLPROJEP__PERSO__4E88ABD4" ManuallyRouted="false" />
-        <AssociationConnector Association="isTakipModel.FK__TBLDOKUMA__PROJE__5AEE82B9" ManuallyRouted="false" />
         <AssociationConnector Association="isTakipModel.FK__TBLPROJEP__PROJE__4F7CD00D" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

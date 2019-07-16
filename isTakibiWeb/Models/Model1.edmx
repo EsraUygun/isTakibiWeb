@@ -5,21 +5,9 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="isTakipModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'isTakip.dbo.TBLDOKUMAN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="TBLDOKUMAN">
           <Key>
             <PropertyRef Name="REC_ID" />
-            <PropertyRef Name="REC_DATE" />
-            <PropertyRef Name="REC_USERNAME" />
-            <PropertyRef Name="REC_USERNO" />
-            <PropertyRef Name="REC_UPDATE" />
-            <PropertyRef Name="REC_UPUSERNAME" />
-            <PropertyRef Name="REC_UPUSERNO" />
-            <PropertyRef Name="REC_CHANGED" />
-            <PropertyRef Name="REC_VERSION" />
-            <PropertyRef Name="PROJE_KOD" />
-            <PropertyRef Name="GOREV_KOD" />
           </Key>
           <Property Name="REC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="REC_DATE" Type="smalldatetime" Nullable="false" />
@@ -154,22 +142,9 @@ warning 6002: The table/view 'isTakip.dbo.TBLDOKUMAN' does not have a primary ke
           <Property Name="ARDATE_2" Type="smalldatetime" />
           <Property Name="ARDATE_3" Type="smalldatetime" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'isTakip.dbo.TBLPROJEPERSONEL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="TBLPROJEPERSONEL">
           <Key>
             <PropertyRef Name="REC_ID" />
-            <PropertyRef Name="REC_DATE" />
-            <PropertyRef Name="REC_USERNAME" />
-            <PropertyRef Name="REC_USERNO" />
-            <PropertyRef Name="REC_UPDATE" />
-            <PropertyRef Name="REC_UPUSERNAME" />
-            <PropertyRef Name="REC_UPUSERNO" />
-            <PropertyRef Name="REC_CHANGED" />
-            <PropertyRef Name="REC_VERSION" />
-            <PropertyRef Name="PERSONEL_KOD" />
-            <PropertyRef Name="PROJE_KOD" />
-            <PropertyRef Name="GOREV_TANIMI" />
           </Key>
           <Property Name="REC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="REC_DATE" Type="smalldatetime" Nullable="false" />
@@ -317,61 +292,13 @@ warning 6002: The table/view 'isTakip.dbo.TBLPROJEPERSONEL' does not have a prim
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="isTakipModelStoreContainer">
+          <EntitySet Name="TBLDOKUMAN" EntityType="Self.TBLDOKUMAN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLGOREV" EntityType="Self.TBLGOREV" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLKULLANICI" EntityType="Self.TBLKULLANICI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLPERSONEL" EntityType="Self.TBLPERSONEL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLPROJE" EntityType="Self.TBLPROJE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLPROJEPERSONEL" EntityType="Self.TBLPROJEPERSONEL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBLYETKI" EntityType="Self.TBLYETKI" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TBLDOKUMAN" EntityType="Self.TBLDOKUMAN" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [TBLDOKUMAN].[REC_ID] AS [REC_ID], 
-    [TBLDOKUMAN].[REC_DATE] AS [REC_DATE], 
-    [TBLDOKUMAN].[REC_USERNAME] AS [REC_USERNAME], 
-    [TBLDOKUMAN].[REC_USERNO] AS [REC_USERNO], 
-    [TBLDOKUMAN].[REC_UPDATE] AS [REC_UPDATE], 
-    [TBLDOKUMAN].[REC_UPUSERNAME] AS [REC_UPUSERNAME], 
-    [TBLDOKUMAN].[REC_UPUSERNO] AS [REC_UPUSERNO], 
-    [TBLDOKUMAN].[REC_CHANGED] AS [REC_CHANGED], 
-    [TBLDOKUMAN].[REC_VERSION] AS [REC_VERSION], 
-    [TBLDOKUMAN].[PROJE_KOD] AS [PROJE_KOD], 
-    [TBLDOKUMAN].[GOREV_KOD] AS [GOREV_KOD], 
-    [TBLDOKUMAN].[BELGE] AS [BELGE], 
-    [TBLDOKUMAN].[ARSTR_1] AS [ARSTR_1], 
-    [TBLDOKUMAN].[ARSTR_2] AS [ARSTR_2], 
-    [TBLDOKUMAN].[ARSTR_3] AS [ARSTR_3], 
-    [TBLDOKUMAN].[ARFLOAT_1] AS [ARFLOAT_1], 
-    [TBLDOKUMAN].[ARFLOAT_2] AS [ARFLOAT_2], 
-    [TBLDOKUMAN].[ARFLOAT_3] AS [ARFLOAT_3], 
-    [TBLDOKUMAN].[ARDATE_1] AS [ARDATE_1], 
-    [TBLDOKUMAN].[ARDATE_2] AS [ARDATE_2], 
-    [TBLDOKUMAN].[ARDATE_3] AS [ARDATE_3]
-    FROM [dbo].[TBLDOKUMAN] AS [TBLDOKUMAN]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="TBLPROJEPERSONEL" EntityType="Self.TBLPROJEPERSONEL" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [TBLPROJEPERSONEL].[REC_ID] AS [REC_ID], 
-    [TBLPROJEPERSONEL].[REC_DATE] AS [REC_DATE], 
-    [TBLPROJEPERSONEL].[REC_USERNAME] AS [REC_USERNAME], 
-    [TBLPROJEPERSONEL].[REC_USERNO] AS [REC_USERNO], 
-    [TBLPROJEPERSONEL].[REC_UPDATE] AS [REC_UPDATE], 
-    [TBLPROJEPERSONEL].[REC_UPUSERNAME] AS [REC_UPUSERNAME], 
-    [TBLPROJEPERSONEL].[REC_UPUSERNO] AS [REC_UPUSERNO], 
-    [TBLPROJEPERSONEL].[REC_CHANGED] AS [REC_CHANGED], 
-    [TBLPROJEPERSONEL].[REC_VERSION] AS [REC_VERSION], 
-    [TBLPROJEPERSONEL].[PERSONEL_KOD] AS [PERSONEL_KOD], 
-    [TBLPROJEPERSONEL].[PROJE_KOD] AS [PROJE_KOD], 
-    [TBLPROJEPERSONEL].[GOREV_TANIMI] AS [GOREV_TANIMI], 
-    [TBLPROJEPERSONEL].[ARSTR_1] AS [ARSTR_1], 
-    [TBLPROJEPERSONEL].[ARSTR_2] AS [ARSTR_2], 
-    [TBLPROJEPERSONEL].[ARSTR_3] AS [ARSTR_3], 
-    [TBLPROJEPERSONEL].[ARFLOAT_1] AS [ARFLOAT_1], 
-    [TBLPROJEPERSONEL].[ARFLOAT_2] AS [ARFLOAT_2], 
-    [TBLPROJEPERSONEL].[ARFLOAT_3] AS [ARFLOAT_3], 
-    [TBLPROJEPERSONEL].[ARDATE_1] AS [ARDATE_1], 
-    [TBLPROJEPERSONEL].[ARDATE_2] AS [ARDATE_2], 
-    [TBLPROJEPERSONEL].[ARDATE_3] AS [ARDATE_3]
-    FROM [dbo].[TBLPROJEPERSONEL] AS [TBLPROJEPERSONEL]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__TBLDOKUMA__GOREV__5BE2A6F2" Association="Self.FK__TBLDOKUMA__GOREV__5BE2A6F2">
             <End Role="TBLGOREV" EntitySet="TBLGOREV" />
             <End Role="TBLDOKUMAN" EntitySet="TBLDOKUMAN" />
@@ -410,6 +337,34 @@ warning 6002: The table/view 'isTakip.dbo.TBLPROJEPERSONEL' does not have a prim
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="isTakipModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TBLDOKUMAN">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+          </Key>
+          <Property Name="REC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="REC_DATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="REC_USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REC_USERNO" Type="Int32" Nullable="false" />
+          <Property Name="REC_UPDATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="REC_UPUSERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REC_UPUSERNO" Type="Int32" Nullable="false" />
+          <Property Name="REC_CHANGED" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REC_VERSION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PROJE_KOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GOREV_KOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BELGE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ARSTR_1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ARSTR_2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ARSTR_3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ARFLOAT_1" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="ARFLOAT_2" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="ARFLOAT_3" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="ARDATE_1" Type="DateTime" Precision="0" />
+          <Property Name="ARDATE_2" Type="DateTime" Precision="0" />
+          <Property Name="ARDATE_3" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TBLGOREV" Relationship="Self.FK__TBLDOKUMA__GOREV__5BE2A6F2" FromRole="TBLDOKUMAN" ToRole="TBLGOREV" />
+          <NavigationProperty Name="TBLPROJE" Relationship="Self.FK__TBLDOKUMA__PROJE__5AEE82B9" FromRole="TBLDOKUMAN" ToRole="TBLPROJE" />
+        </EntityType>
         <EntityType Name="TBLGOREV">
           <Key>
             <PropertyRef Name="GOREV_KOD" />
@@ -528,9 +483,37 @@ warning 6002: The table/view 'isTakip.dbo.TBLPROJEPERSONEL' does not have a prim
           <Property Name="ARDATE_1" Type="DateTime" Precision="0" />
           <Property Name="ARDATE_2" Type="DateTime" Precision="0" />
           <Property Name="ARDATE_3" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="TBLGOREV" Relationship="Self.FK__TBLGOREV__PROJE___5629CD9C" FromRole="TBLPROJE" ToRole="TBLGOREV" />
           <NavigationProperty Name="TBLDOKUMAN" Relationship="Self.FK__TBLDOKUMA__PROJE__5AEE82B9" FromRole="TBLPROJE" ToRole="TBLDOKUMAN" />
+          <NavigationProperty Name="TBLGOREV" Relationship="Self.FK__TBLGOREV__PROJE___5629CD9C" FromRole="TBLPROJE" ToRole="TBLGOREV" />
           <NavigationProperty Name="TBLPROJEPERSONEL" Relationship="Self.FK__TBLPROJEP__PROJE__4F7CD00D" FromRole="TBLPROJE" ToRole="TBLPROJEPERSONEL" />
+        </EntityType>
+        <EntityType Name="TBLPROJEPERSONEL">
+          <Key>
+            <PropertyRef Name="REC_ID" />
+          </Key>
+          <Property Name="REC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="REC_DATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="REC_USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REC_USERNO" Type="Int32" Nullable="false" />
+          <Property Name="REC_UPDATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="REC_UPUSERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REC_UPUSERNO" Type="Int32" Nullable="false" />
+          <Property Name="REC_CHANGED" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REC_VERSION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PERSONEL_KOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PROJE_KOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GOREV_TANIMI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ARSTR_1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ARSTR_2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ARSTR_3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ARFLOAT_1" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="ARFLOAT_2" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="ARFLOAT_3" Type="Decimal" Precision="28" Scale="8" />
+          <Property Name="ARDATE_1" Type="DateTime" Precision="0" />
+          <Property Name="ARDATE_2" Type="DateTime" Precision="0" />
+          <Property Name="ARDATE_3" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TBLPERSONEL" Relationship="Self.FK__TBLPROJEP__PERSO__4E88ABD4" FromRole="TBLPROJEPERSONEL" ToRole="TBLPERSONEL" />
+          <NavigationProperty Name="TBLPROJE" Relationship="Self.FK__TBLPROJEP__PROJE__4F7CD00D" FromRole="TBLPROJEPERSONEL" ToRole="TBLPROJE" />
         </EntityType>
         <EntityType Name="TBLYETKI">
           <Key>
@@ -560,83 +543,6 @@ warning 6002: The table/view 'isTakip.dbo.TBLPROJEPERSONEL' does not have a prim
           <Property Name="ARDATE_3" Type="DateTime" Precision="0" />
           <NavigationProperty Name="TBLKULLANICI" Relationship="Self.FK__TBLYETKI__KULLAN__44FF419A" FromRole="TBLYETKI" ToRole="TBLKULLANICI" />
         </EntityType>
-        <EntityType Name="TBLDOKUMAN">
-          <Key>
-            <PropertyRef Name="REC_ID" />
-            <PropertyRef Name="REC_DATE" />
-            <PropertyRef Name="REC_USERNAME" />
-            <PropertyRef Name="REC_USERNO" />
-            <PropertyRef Name="REC_UPDATE" />
-            <PropertyRef Name="REC_UPUSERNAME" />
-            <PropertyRef Name="REC_UPUSERNO" />
-            <PropertyRef Name="REC_CHANGED" />
-            <PropertyRef Name="REC_VERSION" />
-            <PropertyRef Name="PROJE_KOD" />
-            <PropertyRef Name="GOREV_KOD" />
-          </Key>
-          <Property Name="REC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="REC_DATE" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="REC_USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="REC_USERNO" Type="Int32" Nullable="false" />
-          <Property Name="REC_UPDATE" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="REC_UPUSERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="REC_UPUSERNO" Type="Int32" Nullable="false" />
-          <Property Name="REC_CHANGED" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="REC_VERSION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PROJE_KOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="GOREV_KOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="BELGE" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="ARSTR_1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ARSTR_2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ARSTR_3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ARFLOAT_1" Type="Decimal" Precision="28" Scale="8" />
-          <Property Name="ARFLOAT_2" Type="Decimal" Precision="28" Scale="8" />
-          <Property Name="ARFLOAT_3" Type="Decimal" Precision="28" Scale="8" />
-          <Property Name="ARDATE_1" Type="DateTime" Precision="0" />
-          <Property Name="ARDATE_2" Type="DateTime" Precision="0" />
-          <Property Name="ARDATE_3" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="TBLGOREV" Relationship="Self.FK__TBLDOKUMA__GOREV__5BE2A6F2" FromRole="TBLDOKUMAN" ToRole="TBLGOREV" />
-          <NavigationProperty Name="TBLPROJE" Relationship="Self.FK__TBLDOKUMA__PROJE__5AEE82B9" FromRole="TBLDOKUMAN" ToRole="TBLPROJE" />
-        </EntityType>
-        <EntityType Name="TBLPROJEPERSONEL">
-          <Key>
-            <PropertyRef Name="REC_ID" />
-            <PropertyRef Name="REC_DATE" />
-            <PropertyRef Name="REC_USERNAME" />
-            <PropertyRef Name="REC_USERNO" />
-            <PropertyRef Name="REC_UPDATE" />
-            <PropertyRef Name="REC_UPUSERNAME" />
-            <PropertyRef Name="REC_UPUSERNO" />
-            <PropertyRef Name="REC_CHANGED" />
-            <PropertyRef Name="REC_VERSION" />
-            <PropertyRef Name="PERSONEL_KOD" />
-            <PropertyRef Name="PROJE_KOD" />
-            <PropertyRef Name="GOREV_TANIMI" />
-          </Key>
-          <Property Name="REC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="REC_DATE" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="REC_USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="REC_USERNO" Type="Int32" Nullable="false" />
-          <Property Name="REC_UPDATE" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="REC_UPUSERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="REC_UPUSERNO" Type="Int32" Nullable="false" />
-          <Property Name="REC_CHANGED" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="REC_VERSION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PERSONEL_KOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PROJE_KOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="GOREV_TANIMI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ARSTR_1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ARSTR_2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ARSTR_3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ARFLOAT_1" Type="Decimal" Precision="28" Scale="8" />
-          <Property Name="ARFLOAT_2" Type="Decimal" Precision="28" Scale="8" />
-          <Property Name="ARFLOAT_3" Type="Decimal" Precision="28" Scale="8" />
-          <Property Name="ARDATE_1" Type="DateTime" Precision="0" />
-          <Property Name="ARDATE_2" Type="DateTime" Precision="0" />
-          <Property Name="ARDATE_3" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="TBLPERSONEL" Relationship="Self.FK__TBLPROJEP__PERSO__4E88ABD4" FromRole="TBLPROJEPERSONEL" ToRole="TBLPERSONEL" />
-          <NavigationProperty Name="TBLPROJE" Relationship="Self.FK__TBLPROJEP__PROJE__4F7CD00D" FromRole="TBLPROJEPERSONEL" ToRole="TBLPROJE" />
-        </EntityType>
         <Association Name="FK__TBLDOKUMA__GOREV__5BE2A6F2">
           <End Role="TBLGOREV" Type="Self.TBLGOREV" Multiplicity="1" />
           <End Role="TBLDOKUMAN" Type="Self.TBLDOKUMAN" Multiplicity="*" />
@@ -646,6 +552,18 @@ warning 6002: The table/view 'isTakip.dbo.TBLPROJEPERSONEL' does not have a prim
             </Principal>
             <Dependent Role="TBLDOKUMAN">
               <PropertyRef Name="GOREV_KOD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBLDOKUMA__PROJE__5AEE82B9">
+          <End Role="TBLPROJE" Type="Self.TBLPROJE" Multiplicity="1" />
+          <End Role="TBLDOKUMAN" Type="Self.TBLDOKUMAN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLPROJE">
+              <PropertyRef Name="PROJE_KOD" />
+            </Principal>
+            <Dependent Role="TBLDOKUMAN">
+              <PropertyRef Name="PROJE_KOD" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -709,18 +627,6 @@ warning 6002: The table/view 'isTakip.dbo.TBLPROJEPERSONEL' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TBLDOKUMA__PROJE__5AEE82B9">
-          <End Role="TBLPROJE" Type="Self.TBLPROJE" Multiplicity="1" />
-          <End Role="TBLDOKUMAN" Type="Self.TBLDOKUMAN" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TBLPROJE">
-              <PropertyRef Name="PROJE_KOD" />
-            </Principal>
-            <Dependent Role="TBLDOKUMAN">
-              <PropertyRef Name="PROJE_KOD" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__TBLPROJEP__PROJE__4F7CD00D">
           <End Role="TBLPROJE" Type="Self.TBLPROJE" Multiplicity="1" />
           <End Role="TBLPROJEPERSONEL" Type="Self.TBLPROJEPERSONEL" Multiplicity="*" />
@@ -733,16 +639,20 @@ warning 6002: The table/view 'isTakip.dbo.TBLPROJEPERSONEL' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="isTakipEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="isTakipEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TBLDOKUMAN" EntityType="Self.TBLDOKUMAN" />
           <EntitySet Name="TBLGOREV" EntityType="Self.TBLGOREV" />
           <EntitySet Name="TBLKULLANICI" EntityType="Self.TBLKULLANICI" />
           <EntitySet Name="TBLPERSONEL" EntityType="Self.TBLPERSONEL" />
           <EntitySet Name="TBLPROJE" EntityType="Self.TBLPROJE" />
-          <EntitySet Name="TBLYETKI" EntityType="Self.TBLYETKI" />
-          <EntitySet Name="TBLDOKUMAN" EntityType="Self.TBLDOKUMAN" />
           <EntitySet Name="TBLPROJEPERSONEL" EntityType="Self.TBLPROJEPERSONEL" />
+          <EntitySet Name="TBLYETKI" EntityType="Self.TBLYETKI" />
           <AssociationSet Name="FK__TBLDOKUMA__GOREV__5BE2A6F2" Association="Self.FK__TBLDOKUMA__GOREV__5BE2A6F2">
             <End Role="TBLGOREV" EntitySet="TBLGOREV" />
+            <End Role="TBLDOKUMAN" EntitySet="TBLDOKUMAN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBLDOKUMA__PROJE__5AEE82B9" Association="Self.FK__TBLDOKUMA__PROJE__5AEE82B9">
+            <End Role="TBLPROJE" EntitySet="TBLPROJE" />
             <End Role="TBLDOKUMAN" EntitySet="TBLDOKUMAN" />
           </AssociationSet>
           <AssociationSet Name="FK__TBLGOREV__PERSON__5535A963" Association="Self.FK__TBLGOREV__PERSON__5535A963">
@@ -765,10 +675,6 @@ warning 6002: The table/view 'isTakip.dbo.TBLPROJEPERSONEL' does not have a prim
             <End Role="TBLPERSONEL" EntitySet="TBLPERSONEL" />
             <End Role="TBLPROJEPERSONEL" EntitySet="TBLPROJEPERSONEL" />
           </AssociationSet>
-          <AssociationSet Name="FK__TBLDOKUMA__PROJE__5AEE82B9" Association="Self.FK__TBLDOKUMA__PROJE__5AEE82B9">
-            <End Role="TBLPROJE" EntitySet="TBLPROJE" />
-            <End Role="TBLDOKUMAN" EntitySet="TBLDOKUMAN" />
-          </AssociationSet>
           <AssociationSet Name="FK__TBLPROJEP__PROJE__4F7CD00D" Association="Self.FK__TBLPROJEP__PROJE__4F7CD00D">
             <End Role="TBLPROJE" EntitySet="TBLPROJE" />
             <End Role="TBLPROJEPERSONEL" EntitySet="TBLPROJEPERSONEL" />
@@ -779,7 +685,34 @@ warning 6002: The table/view 'isTakip.dbo.TBLPROJEPERSONEL' does not have a prim
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="isTakipModelStoreContainer" CdmEntityContainer="isTakipEntities">
+        <EntityContainerMapping StorageEntityContainer="isTakipModelStoreContainer" CdmEntityContainer="isTakipEntities1">
+          <EntitySetMapping Name="TBLDOKUMAN">
+            <EntityTypeMapping TypeName="isTakipModel.TBLDOKUMAN">
+              <MappingFragment StoreEntitySet="TBLDOKUMAN">
+                <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+                <ScalarProperty Name="REC_DATE" ColumnName="REC_DATE" />
+                <ScalarProperty Name="REC_USERNAME" ColumnName="REC_USERNAME" />
+                <ScalarProperty Name="REC_USERNO" ColumnName="REC_USERNO" />
+                <ScalarProperty Name="REC_UPDATE" ColumnName="REC_UPDATE" />
+                <ScalarProperty Name="REC_UPUSERNAME" ColumnName="REC_UPUSERNAME" />
+                <ScalarProperty Name="REC_UPUSERNO" ColumnName="REC_UPUSERNO" />
+                <ScalarProperty Name="REC_CHANGED" ColumnName="REC_CHANGED" />
+                <ScalarProperty Name="REC_VERSION" ColumnName="REC_VERSION" />
+                <ScalarProperty Name="PROJE_KOD" ColumnName="PROJE_KOD" />
+                <ScalarProperty Name="GOREV_KOD" ColumnName="GOREV_KOD" />
+                <ScalarProperty Name="BELGE" ColumnName="BELGE" />
+                <ScalarProperty Name="ARSTR_1" ColumnName="ARSTR_1" />
+                <ScalarProperty Name="ARSTR_2" ColumnName="ARSTR_2" />
+                <ScalarProperty Name="ARSTR_3" ColumnName="ARSTR_3" />
+                <ScalarProperty Name="ARFLOAT_1" ColumnName="ARFLOAT_1" />
+                <ScalarProperty Name="ARFLOAT_2" ColumnName="ARFLOAT_2" />
+                <ScalarProperty Name="ARFLOAT_3" ColumnName="ARFLOAT_3" />
+                <ScalarProperty Name="ARDATE_1" ColumnName="ARDATE_1" />
+                <ScalarProperty Name="ARDATE_2" ColumnName="ARDATE_2" />
+                <ScalarProperty Name="ARDATE_3" ColumnName="ARDATE_3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TBLGOREV">
             <EntityTypeMapping TypeName="isTakipModel.TBLGOREV">
               <MappingFragment StoreEntitySet="TBLGOREV">
@@ -895,6 +828,33 @@ warning 6002: The table/view 'isTakip.dbo.TBLPROJEPERSONEL' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TBLPROJEPERSONEL">
+            <EntityTypeMapping TypeName="isTakipModel.TBLPROJEPERSONEL">
+              <MappingFragment StoreEntitySet="TBLPROJEPERSONEL">
+                <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
+                <ScalarProperty Name="REC_DATE" ColumnName="REC_DATE" />
+                <ScalarProperty Name="REC_USERNAME" ColumnName="REC_USERNAME" />
+                <ScalarProperty Name="REC_USERNO" ColumnName="REC_USERNO" />
+                <ScalarProperty Name="REC_UPDATE" ColumnName="REC_UPDATE" />
+                <ScalarProperty Name="REC_UPUSERNAME" ColumnName="REC_UPUSERNAME" />
+                <ScalarProperty Name="REC_UPUSERNO" ColumnName="REC_UPUSERNO" />
+                <ScalarProperty Name="REC_CHANGED" ColumnName="REC_CHANGED" />
+                <ScalarProperty Name="REC_VERSION" ColumnName="REC_VERSION" />
+                <ScalarProperty Name="PERSONEL_KOD" ColumnName="PERSONEL_KOD" />
+                <ScalarProperty Name="PROJE_KOD" ColumnName="PROJE_KOD" />
+                <ScalarProperty Name="GOREV_TANIMI" ColumnName="GOREV_TANIMI" />
+                <ScalarProperty Name="ARSTR_1" ColumnName="ARSTR_1" />
+                <ScalarProperty Name="ARSTR_2" ColumnName="ARSTR_2" />
+                <ScalarProperty Name="ARSTR_3" ColumnName="ARSTR_3" />
+                <ScalarProperty Name="ARFLOAT_1" ColumnName="ARFLOAT_1" />
+                <ScalarProperty Name="ARFLOAT_2" ColumnName="ARFLOAT_2" />
+                <ScalarProperty Name="ARFLOAT_3" ColumnName="ARFLOAT_3" />
+                <ScalarProperty Name="ARDATE_1" ColumnName="ARDATE_1" />
+                <ScalarProperty Name="ARDATE_2" ColumnName="ARDATE_2" />
+                <ScalarProperty Name="ARDATE_3" ColumnName="ARDATE_3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TBLYETKI">
             <EntityTypeMapping TypeName="isTakipModel.TBLYETKI">
               <MappingFragment StoreEntitySet="TBLYETKI">
@@ -911,60 +871,6 @@ warning 6002: The table/view 'isTakip.dbo.TBLPROJEPERSONEL' does not have a prim
                 <ScalarProperty Name="YETKI_TANIMI" ColumnName="YETKI_TANIMI" />
                 <ScalarProperty Name="KULLANICI_KOD" ColumnName="KULLANICI_KOD" />
                 <ScalarProperty Name="TAM_YETKI" ColumnName="TAM_YETKI" />
-                <ScalarProperty Name="ARSTR_1" ColumnName="ARSTR_1" />
-                <ScalarProperty Name="ARSTR_2" ColumnName="ARSTR_2" />
-                <ScalarProperty Name="ARSTR_3" ColumnName="ARSTR_3" />
-                <ScalarProperty Name="ARFLOAT_1" ColumnName="ARFLOAT_1" />
-                <ScalarProperty Name="ARFLOAT_2" ColumnName="ARFLOAT_2" />
-                <ScalarProperty Name="ARFLOAT_3" ColumnName="ARFLOAT_3" />
-                <ScalarProperty Name="ARDATE_1" ColumnName="ARDATE_1" />
-                <ScalarProperty Name="ARDATE_2" ColumnName="ARDATE_2" />
-                <ScalarProperty Name="ARDATE_3" ColumnName="ARDATE_3" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TBLDOKUMAN">
-            <EntityTypeMapping TypeName="isTakipModel.TBLDOKUMAN">
-              <MappingFragment StoreEntitySet="TBLDOKUMAN">
-                <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
-                <ScalarProperty Name="REC_DATE" ColumnName="REC_DATE" />
-                <ScalarProperty Name="REC_USERNAME" ColumnName="REC_USERNAME" />
-                <ScalarProperty Name="REC_USERNO" ColumnName="REC_USERNO" />
-                <ScalarProperty Name="REC_UPDATE" ColumnName="REC_UPDATE" />
-                <ScalarProperty Name="REC_UPUSERNAME" ColumnName="REC_UPUSERNAME" />
-                <ScalarProperty Name="REC_UPUSERNO" ColumnName="REC_UPUSERNO" />
-                <ScalarProperty Name="REC_CHANGED" ColumnName="REC_CHANGED" />
-                <ScalarProperty Name="REC_VERSION" ColumnName="REC_VERSION" />
-                <ScalarProperty Name="PROJE_KOD" ColumnName="PROJE_KOD" />
-                <ScalarProperty Name="GOREV_KOD" ColumnName="GOREV_KOD" />
-                <ScalarProperty Name="BELGE" ColumnName="BELGE" />
-                <ScalarProperty Name="ARSTR_1" ColumnName="ARSTR_1" />
-                <ScalarProperty Name="ARSTR_2" ColumnName="ARSTR_2" />
-                <ScalarProperty Name="ARSTR_3" ColumnName="ARSTR_3" />
-                <ScalarProperty Name="ARFLOAT_1" ColumnName="ARFLOAT_1" />
-                <ScalarProperty Name="ARFLOAT_2" ColumnName="ARFLOAT_2" />
-                <ScalarProperty Name="ARFLOAT_3" ColumnName="ARFLOAT_3" />
-                <ScalarProperty Name="ARDATE_1" ColumnName="ARDATE_1" />
-                <ScalarProperty Name="ARDATE_2" ColumnName="ARDATE_2" />
-                <ScalarProperty Name="ARDATE_3" ColumnName="ARDATE_3" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TBLPROJEPERSONEL">
-            <EntityTypeMapping TypeName="isTakipModel.TBLPROJEPERSONEL">
-              <MappingFragment StoreEntitySet="TBLPROJEPERSONEL">
-                <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
-                <ScalarProperty Name="REC_DATE" ColumnName="REC_DATE" />
-                <ScalarProperty Name="REC_USERNAME" ColumnName="REC_USERNAME" />
-                <ScalarProperty Name="REC_USERNO" ColumnName="REC_USERNO" />
-                <ScalarProperty Name="REC_UPDATE" ColumnName="REC_UPDATE" />
-                <ScalarProperty Name="REC_UPUSERNAME" ColumnName="REC_UPUSERNAME" />
-                <ScalarProperty Name="REC_UPUSERNO" ColumnName="REC_UPUSERNO" />
-                <ScalarProperty Name="REC_CHANGED" ColumnName="REC_CHANGED" />
-                <ScalarProperty Name="REC_VERSION" ColumnName="REC_VERSION" />
-                <ScalarProperty Name="PERSONEL_KOD" ColumnName="PERSONEL_KOD" />
-                <ScalarProperty Name="PROJE_KOD" ColumnName="PROJE_KOD" />
-                <ScalarProperty Name="GOREV_TANIMI" ColumnName="GOREV_TANIMI" />
                 <ScalarProperty Name="ARSTR_1" ColumnName="ARSTR_1" />
                 <ScalarProperty Name="ARSTR_2" ColumnName="ARSTR_2" />
                 <ScalarProperty Name="ARSTR_3" ColumnName="ARSTR_3" />

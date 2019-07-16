@@ -9,13 +9,83 @@ namespace isTakibiWeb.Controllers
 {
     public class HomeController : Controller
     {
-        isTakipEntities entities = new isTakipEntities();
+        isTakipEntities1 entities = new isTakipEntities1();
+        Classes.CommonClass common = new Classes.CommonClass();
         public ActionResult Index()
         {
 
             return View();
         }
 
+        public ActionResult projeEkle()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult projeEkle(TBLPROJE model)
+        {
+            
+            model.REC_DATE = DateTime.Now;
+         
+            model.REC_UPDATE = DateTime.Now;
+            model.REC_UPUSERNAME = "esra33";
+            model.REC_UPUSERNO = 33;
+            model.REC_USERNAME = "esra33";
+            model.REC_USERNO = 33;
+            model.REC_CHANGED = "0";
+            model.REC_VERSION = common.REC_VERSION;
+            entities.TBLPROJE.Add(model);
+            entities.SaveChanges();
+            return RedirectToAction("ProjePersonel" );
+            
+        }
+
+        public ActionResult ProjePersonel()
+        {
+           
+
+            List<SelectListItem> personeller = new List<SelectListItem>();
+            foreach (var item in entities.TBLPERSONEL.ToList())
+            {
+                personeller.Add(new SelectListItem { Text = item.PERSONEL_ADI, Value = item.PERSONEL_KOD });
+
+            }
+
+            ViewBag.PERSONEL_KOD = personeller;
+
+            List<SelectListItem> projekod = new List<SelectListItem>();
+            foreach (var item in entities.TBLPROJE.ToList())
+            {
+                projekod.Add(new SelectListItem { Text = item.PROJE_ADI, Value = item.PROJE_KOD });
+
+            }
+
+            ViewBag.PROJE_KOD = projekod;
+
+            return View();
+
+        }
+        [HttpPost]
+        public ActionResult ProjePersonel(TBLPROJEPERSONEL model)
+        {
+           
+            model.REC_DATE = DateTime.Now;
+            model.REC_UPDATE = DateTime.Now;
+            model.REC_UPUSERNAME = "esra33";
+            model.REC_UPUSERNO = 33;
+            model.REC_USERNAME = "esra33";
+            model.REC_USERNO = 33;
+            model.REC_CHANGED = "0";
+            model.REC_VERSION = common.REC_VERSION;
+            entities.TBLPROJEPERSONEL.Add(model);
+            
+
+            entities.SaveChanges();
+
+            return RedirectToAction("ProjePersonel");
+        }
         public ActionResult personelEkle()
         {
 
@@ -25,14 +95,14 @@ namespace isTakibiWeb.Controllers
         public ActionResult personelEkle(TBLPERSONEL model)
         {
             model.REC_DATE = DateTime.Now;
-            model.REC_ID = 33;
+           
             model.REC_UPDATE = DateTime.Now;
             model.REC_UPUSERNAME = "esra33";
             model.REC_UPUSERNO = 33;
             model.REC_USERNAME = "esra33";
             model.REC_USERNO = 33;
             model.REC_CHANGED = "0";
-
+            model.REC_VERSION = common.REC_VERSION;
             entities.TBLPERSONEL.Add(model);
 
             entities.SaveChanges();
@@ -52,13 +122,14 @@ namespace isTakibiWeb.Controllers
         public ActionResult kullanıcıEkle(TBLKULLANICI model)
         {
             model.REC_DATE = DateTime.Now;
-            model.REC_ID = 33;
+        
             model.REC_UPDATE = DateTime.Now;
             model.REC_UPUSERNAME = "esra33";
             model.REC_UPUSERNO = 33;
             model.REC_USERNAME = "esra33";
             model.REC_USERNO = 33;
             model.REC_CHANGED = "0";
+            model.REC_VERSION = common.REC_VERSION;
             //model.PERSONEL_KOD = personel_kod;
             entities.TBLKULLANICI.Add(model);
             entities.SaveChanges();
@@ -90,14 +161,12 @@ namespace isTakibiWeb.Controllers
             }
             if (!String.IsNullOrEmpty(aranacakKelime))
             {
-                personeller = personeller.Where(a => a.PERSONEL_ADI.Contains(aranacakKelime));
-                personeller = personeller.Where(a => a.PERSONEL_SOYADI.Contains(aranacakKelime));
-                personeller = personeller.Where(a => a.PERSONEL_KOD.Contains(aranacakKelime));
-
-
+                personeller = personeller.Where(f => f.PERSONEL_ADI.Contains(aranacakKelime) || f.PERSONEL_SOYADI.Contains(aranacakKelime));
+                
+                
                 
             }
-            return View(personeller);
+            return View(personeller.ToList());
         }
         public ActionResult KullanıcıListele()
         {
@@ -106,6 +175,11 @@ namespace isTakibiWeb.Controllers
         public ActionResult perlist()
         {
             return View(entities.TBLPERSONEL.ToList());
+        }
+
+        public ActionResult Login()
+        {
+            return View();
         }
     }
 }

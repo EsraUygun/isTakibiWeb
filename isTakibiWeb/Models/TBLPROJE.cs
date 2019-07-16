@@ -17,8 +17,8 @@ namespace isTakibiWeb.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TBLPROJE()
         {
-            this.TBLGOREV = new HashSet<TBLGOREV>();
             this.TBLDOKUMAN = new HashSet<TBLDOKUMAN>();
+            this.TBLGOREV = new HashSet<TBLGOREV>();
             this.TBLPROJEPERSONEL = new HashSet<TBLPROJEPERSONEL>();
         }
     
@@ -46,9 +46,9 @@ namespace isTakibiWeb.Models
         public Nullable<System.DateTime> ARDATE_3 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TBLGOREV> TBLGOREV { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TBLDOKUMAN> TBLDOKUMAN { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TBLGOREV> TBLGOREV { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TBLPROJEPERSONEL> TBLPROJEPERSONEL { get; set; }
     }
