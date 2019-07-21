@@ -24,101 +24,76 @@
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-        <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+        <a class="navbar-brand" href="~/Home/Index">İŞ TAKİP</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                    <a class="nav-link" href="index.html">
-                        <i class="fa fa-fw fa-dashboard"></i>
-                        <span class="nav-link-text">Dashboard</span>
+                    <a class="nav-link" href="~/Home/Index">
+                        <img src="~/image/homepage.png"/>
+                        <span class="nav-link-text">Anasayfa</span>
                     </a>
                 </li>
-                @*<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fa fa-fw fa-area-chart"></i>
-                        <span class="nav-link-text">Charts</span>
-                    </a>
-                </li>*@
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-                    <a class="nav-link" href="tables.html">
-                        <i class="fa fa-fw fa-table"></i>
-                        <span class="nav-link-text">Tables</span>
-                    </a>
-                </li>
+            
+
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
-                        <i class="fa fa-fw fa-wrench"></i>
-                        <span class="nav-link-text">Components</span>
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseListele" data-parent="#exampleAccordion">
+         
+                        <img src="~/image/network.png" />
+                        <span class="nav-link-text">Personel/Kullanıcı Listele</span>
                     </a>
-                    <ul class="sidenav-second-level collapse" id="collapseComponents">
+                    <ul class="sidenav-second-level collapse" id="collapseListele">
                         <li>
-                            <a href="navbar.html">Navbar</a>
+                            <a class="nav-link" href="~/Home/PersonelListele">
+                                <img src="~/image/network.png" />
+                                <span class="nav-link-text"> Personel Listele</span>
+                            </a>
                         </li>
                         <li>
-                            <a href="cards.html">Cards</a>
+                            <a class="nav-link" href="~/Home/KullanıcıListele">
+                                <img src="~/image/network.png" />
+                                <span class="nav-link-text"> Kullanıcı Listele</span>
+                            </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
-                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion" aria-expanded="false">
-                        <i class="fa fa-fw fa-file"></i>
-                        <span class="nav-link-text">Example Pages</span>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right">
+                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseProje" data-parent="#exampleAccordion" aria-expanded="false">
+                       
+                        <img src="~/image/project2.png" />
+                        <span class="nav-link-text">Proje</span>
                     </a>
-                    <ul class="sidenav-second-level collapse" id="collapseExamplePages">
+                    <ul class="sidenav-second-level collapse" id="collapseProje">
                         <li>
-                            <a href="login.html">Login Page</a>
+                            <a class="nav-link" href="~/Home/projeEkle">
+                                <img src="~/image/pen.png" />
+                                <span class="nav-link-text"> Proje Ekle</span>
+                            </a>
                         </li>
                         <li>
-                            <a href="register.html">Registration Page</a>
+                            <a class="nav-link" href="~/Home/projeListele">
+                                <img src="~/image/checklist.png" />
+                                <span class="nav-link-text"> Proje Görüntüle</span>
+                            </a>
                         </li>
+
                         <li>
-                            <a href="forgot-password.html">Forgot Password Page</a>
-                        </li>
-                        <li>
-                            <a href="blank.html">Blank Page</a>
+                            <a class="nav-link" href="~/Home/projePersonel">
+                                <img src="~/image/study.png" />
+                                <span class="nav-link-text"> Projeye Personel Ekle</span>
+                            </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
-                    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
-                        <i class="fa fa-fw fa-sitemap"></i>
-                        <span class="nav-link-text">Menu Levels</span>
-                    </a>
-                    <ul class="sidenav-second-level collapse" id="collapseMulti">
-                        <li>
-                            <a href="#">Second Level Item</a>
-                        </li>
-                        <li>
-                            <a href="#">Second Level Item</a>
-                        </li>
-                        <li>
-                            <a href="#">Second Level Item</a>
-                        </li>
-                        <li>
-                            <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">Third Level</a>
-                            <ul class="sidenav-third-level collapse" id="collapseMulti2">
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
-                    <a class="nav-link" href="#">
-                        <i class="fa fa-fw fa-link"></i>
-                        <span class="nav-link-text">Link</span>
-                    </a>
-                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right">
+                        <a class="nav-link" href="~/Home/personelEkle">
+                           <img  src="~/image/user.png"/>
+                             <span class="nav-link-text">Personel Ekle</span>
+                        </a>
+                 </li>
+                
             </ul>
             <ul class="navbar-nav sidenav-toggler">
                 <li class="nav-item">
@@ -651,15 +626,15 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Çıkış yapmak istiyor musun?</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-body">Oturumun kapanması için ÇIKIŞ'I seçin</div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">İPTAL</button>
+                        <a class="btn btn-primary" href="~/Home/LogOut">ÇIKIŞ</a>
                     </div>
                 </div>
             </div>

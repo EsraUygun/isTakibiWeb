@@ -25,7 +25,7 @@ namespace isTakibiWeb.Models
         public string REC_VERSION { get; set; }
         public string YETKI_KOD { get; set; }
         public string YETKI_TANIMI { get; set; }
-        public string KULLANICI_KOD { get; set; }
+        public int KULLANICI_KOD { get; set; }
         public string TAM_YETKI { get; set; }
         public string ARSTR_1 { get; set; }
         public string ARSTR_2 { get; set; }

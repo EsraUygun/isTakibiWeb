@@ -49,33 +49,7 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.TEL_NO)
                             </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_ID)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_DATE)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_USERNAME)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_USERNO)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_UPDATE)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_UPUSERNAME)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_UPUSERNO)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_CHANGED)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_VERSION)
-                            </th>
+                            
 
                             <th></th>
                         </tr>
@@ -96,33 +70,7 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.TEL_NO)
                             </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_ID)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_DATE)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_USERNAME)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_USERNO)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_UPDATE)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_UPUSERNAME)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_UPUSERNO)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_CHANGED)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_VERSION)
-                            </th>
+                            
 
                             <th></th>
                         </tr>
@@ -146,38 +94,12 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.TEL_NO)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.REC_ID)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.REC_DATE)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.REC_USERNAME)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.REC_USERNO)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.REC_UPDATE)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.REC_UPUSERNAME)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.REC_UPUSERNO)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.REC_CHANGED)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.REC_VERSION)
-                            </td>
+
 
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.PERSONEL_KOD }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.PERSONEL_KOD }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.PERSONEL_KOD })
+                                @Html.ActionLink("Düzenle", "personelDüzenle",new {id= item.PERSONEL_KOD } ) |
+                                @Html.ActionLink("Ayrıntılar", "personelDetails","Home", new { id = item.REC_ID }) |
+                                @Html.ActionLink("Sil", "personelSil", new { id = item.PERSONEL_KOD })
                             </td>
                         </tr>
                         }

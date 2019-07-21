@@ -1,13 +1,27 @@
-﻿<!DOCTYPE html>
+﻿
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-</head>
-<body>
-    <div>
-        @RenderBody()
+
+
+<link rel="stylesheet" type="text/css" href="~/Content/login/login-css.css">
+
+<div class="login-page">
+    <div class="form">
+        @*<form class="register-form">
+            <input type="text" placeholder="name" />
+            <input type="password" placeholder="password" />
+            <input type="text" placeholder="email address" />
+            <button>create</button>
+            <p class="message">Already registered? <a href="#">Sign In</a></p>
+        </form>*@
+        <form class="login-form" action="~/Home/Login"  method="post">
+            <input type="text" name="username" placeholder="username" />
+            <input type="password"  name="password" placeholder="password" />
+            <button type="submit">login</button>
+            <p class="message">Not registered? <a href="#">Create an account</a></p>
+        </form>
     </div>
-</body>
-</html>
+</div>
+<div>
+    @RenderBody()
+</div>
+<script src="~/Content/login/login-js.js"></script>

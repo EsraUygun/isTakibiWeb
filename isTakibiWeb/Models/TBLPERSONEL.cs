@@ -11,7 +11,8 @@ namespace isTakibiWeb.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.Mvc;
+
     public partial class TBLPERSONEL
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -31,6 +32,7 @@ namespace isTakibiWeb.Models
         public int REC_UPUSERNO { get; set; }
         public string REC_CHANGED { get; set; }
         public string REC_VERSION { get; set; }
+
         public string PERSONEL_KOD { get; set; }
         public string PERSONEL_ADI { get; set; }
         public string PERSONEL_SOYADI { get; set; }

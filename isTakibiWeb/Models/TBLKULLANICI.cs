@@ -29,7 +29,6 @@ namespace isTakibiWeb.Models
         public int REC_UPUSERNO { get; set; }
         public string REC_CHANGED { get; set; }
         public string REC_VERSION { get; set; }
-        public string KULLANICI_KOD { get; set; }
         public string KULLANICI_ADI { get; set; }
         public string SIFRE { get; set; }
         public string E_POSTA { get; set; }

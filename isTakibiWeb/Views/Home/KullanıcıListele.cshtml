@@ -30,7 +30,7 @@
                                 @Html.DisplayNameFor(model => model.PERSONEL_KOD)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.KULLANICI_KOD)
+                                @Html.DisplayNameFor(model => model.REC_ID)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.KULLANICI_ADI)
@@ -40,9 +40,6 @@
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.E_POSTA)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_ID)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.REC_DATE)
@@ -68,34 +65,7 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.REC_VERSION)
                             </th>
-                            @*<th>
-            @Html.DisplayNameFor(model => model.ARSTR_1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ARSTR_2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ARSTR_3)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ARFLOAT_1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ARFLOAT_2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ARFLOAT_3)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ARDATE_1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ARDATE_2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ARDATE_3)
-        </th>*@
-
+      
                             <th></th>
                         </tr>
                     </thead>
@@ -109,7 +79,7 @@
                                 @Html.DisplayFor(modelitem => item.PERSONEL_KOD)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelitem => item.KULLANICI_KOD)
+                                @Html.DisplayFor(modelitem => item.REC_ID)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.KULLANICI_ADI)
@@ -119,9 +89,6 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.E_POSTA)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.REC_ID)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.REC_DATE)
@@ -147,38 +114,12 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.REC_VERSION)
                             </td>
-                            @*<td>
-            @Html.DisplayFor(modelItem => item.ARSTR_1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ARSTR_2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ARSTR_3)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ARFLOAT_1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ARFLOAT_2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ARFLOAT_3)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ARDATE_1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ARDATE_2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ARDATE_3)
-        </td>*@
+                            
 
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.KULLANICI_KOD }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.KULLANICI_KOD }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.KULLANICI_KOD })
+                                @Html.ActionLink("Edit", "Edit", new { id = item.REC_ID }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.REC_ID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.REC_ID })
                             </td>
                         </tr>
                         }

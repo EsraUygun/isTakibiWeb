@@ -13,10 +13,10 @@ namespace isTakibiWeb.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class isTakipEntities1 : DbContext
+    public partial class isTakipEntities : DbContext
     {
-        public isTakipEntities1()
-            : base("name=isTakipEntities1")
+        public isTakipEntities()
+            : base("name=isTakipEntities")
         {
         }
     

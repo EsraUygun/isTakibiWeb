@@ -62,7 +62,7 @@
         </EntityType>
         <EntityType Name="TBLKULLANICI">
           <Key>
-            <PropertyRef Name="KULLANICI_KOD" />
+            <PropertyRef Name="REC_ID" />
           </Key>
           <Property Name="REC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="REC_DATE" Type="smalldatetime" Nullable="false" />
@@ -73,7 +73,6 @@
           <Property Name="REC_UPUSERNO" Type="int" Nullable="false" />
           <Property Name="REC_CHANGED" Type="varchar" MaxLength="1" Nullable="false" />
           <Property Name="REC_VERSION" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="KULLANICI_KOD" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="KULLANICI_ADI" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="SIFRE" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="E_POSTA" Type="varchar" MaxLength="100" />
@@ -183,7 +182,7 @@
           <Property Name="REC_VERSION" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="YETKI_KOD" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="YETKI_TANIMI" Type="varchar" MaxLength="100" />
-          <Property Name="KULLANICI_KOD" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="KULLANICI_KOD" Type="int" Nullable="false" />
           <Property Name="TAM_YETKI" Type="varchar" MaxLength="1" />
           <Property Name="ARSTR_1" Type="varchar" MaxLength="100" />
           <Property Name="ARSTR_2" Type="varchar" MaxLength="100" />
@@ -243,7 +242,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TBLKULLAN__PERSO__3F466844">
+        <Association Name="FK__TBLKULLAN__PERSO__7F2BE32F">
           <End Role="TBLPERSONEL" Type="Self.TBLPERSONEL" Multiplicity="1" />
           <End Role="TBLKULLANICI" Type="Self.TBLKULLANICI" Multiplicity="*" />
           <ReferentialConstraint>
@@ -279,12 +278,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TBLYETKI__KULLAN__44FF419A">
+        <Association Name="FK__TBLYETKI__KULLAN__04E4BC85">
           <End Role="TBLKULLANICI" Type="Self.TBLKULLANICI" Multiplicity="1" />
           <End Role="TBLYETKI" Type="Self.TBLYETKI" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TBLKULLANICI">
-              <PropertyRef Name="KULLANICI_KOD" />
+              <PropertyRef Name="REC_ID" />
             </Principal>
             <Dependent Role="TBLYETKI">
               <PropertyRef Name="KULLANICI_KOD" />
@@ -315,7 +314,7 @@
             <End Role="TBLPROJE" EntitySet="TBLPROJE" />
             <End Role="TBLGOREV" EntitySet="TBLGOREV" />
           </AssociationSet>
-          <AssociationSet Name="FK__TBLKULLAN__PERSO__3F466844" Association="Self.FK__TBLKULLAN__PERSO__3F466844">
+          <AssociationSet Name="FK__TBLKULLAN__PERSO__7F2BE32F" Association="Self.FK__TBLKULLAN__PERSO__7F2BE32F">
             <End Role="TBLPERSONEL" EntitySet="TBLPERSONEL" />
             <End Role="TBLKULLANICI" EntitySet="TBLKULLANICI" />
           </AssociationSet>
@@ -327,7 +326,7 @@
             <End Role="TBLPROJE" EntitySet="TBLPROJE" />
             <End Role="TBLPROJEPERSONEL" EntitySet="TBLPROJEPERSONEL" />
           </AssociationSet>
-          <AssociationSet Name="FK__TBLYETKI__KULLAN__44FF419A" Association="Self.FK__TBLYETKI__KULLAN__44FF419A">
+          <AssociationSet Name="FK__TBLYETKI__KULLAN__04E4BC85" Association="Self.FK__TBLYETKI__KULLAN__04E4BC85">
             <End Role="TBLKULLANICI" EntitySet="TBLKULLANICI" />
             <End Role="TBLYETKI" EntitySet="TBLYETKI" />
           </AssociationSet>
@@ -399,7 +398,7 @@
         </EntityType>
         <EntityType Name="TBLKULLANICI">
           <Key>
-            <PropertyRef Name="KULLANICI_KOD" />
+            <PropertyRef Name="REC_ID" />
           </Key>
           <Property Name="REC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="REC_DATE" Type="DateTime" Nullable="false" Precision="0" />
@@ -410,7 +409,6 @@
           <Property Name="REC_UPUSERNO" Type="Int32" Nullable="false" />
           <Property Name="REC_CHANGED" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="REC_VERSION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="KULLANICI_KOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="KULLANICI_ADI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SIFRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="E_POSTA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -424,8 +422,8 @@
           <Property Name="ARDATE_1" Type="DateTime" Precision="0" />
           <Property Name="ARDATE_2" Type="DateTime" Precision="0" />
           <Property Name="ARDATE_3" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="TBLPERSONEL" Relationship="Self.FK__TBLKULLAN__PERSO__3F466844" FromRole="TBLKULLANICI" ToRole="TBLPERSONEL" />
-          <NavigationProperty Name="TBLYETKI" Relationship="Self.FK__TBLYETKI__KULLAN__44FF419A" FromRole="TBLKULLANICI" ToRole="TBLYETKI" />
+          <NavigationProperty Name="TBLPERSONEL" Relationship="Self.FK__TBLKULLAN__PERSO__7F2BE32F" FromRole="TBLKULLANICI" ToRole="TBLPERSONEL" />
+          <NavigationProperty Name="TBLYETKI" Relationship="Self.FK__TBLYETKI__KULLAN__04E4BC85" FromRole="TBLKULLANICI" ToRole="TBLYETKI" />
         </EntityType>
         <EntityType Name="TBLPERSONEL">
           <Key>
@@ -454,7 +452,7 @@
           <Property Name="ARDATE_2" Type="DateTime" Precision="0" />
           <Property Name="ARDATE_3" Type="DateTime" Precision="0" />
           <NavigationProperty Name="TBLGOREV" Relationship="Self.FK__TBLGOREV__PERSON__5535A963" FromRole="TBLPERSONEL" ToRole="TBLGOREV" />
-          <NavigationProperty Name="TBLKULLANICI" Relationship="Self.FK__TBLKULLAN__PERSO__3F466844" FromRole="TBLPERSONEL" ToRole="TBLKULLANICI" />
+          <NavigationProperty Name="TBLKULLANICI" Relationship="Self.FK__TBLKULLAN__PERSO__7F2BE32F" FromRole="TBLPERSONEL" ToRole="TBLKULLANICI" />
           <NavigationProperty Name="TBLPROJEPERSONEL" Relationship="Self.FK__TBLPROJEP__PERSO__4E88ABD4" FromRole="TBLPERSONEL" ToRole="TBLPROJEPERSONEL" />
         </EntityType>
         <EntityType Name="TBLPROJE">
@@ -530,7 +528,7 @@
           <Property Name="REC_VERSION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="YETKI_KOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="YETKI_TANIMI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="KULLANICI_KOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="KULLANICI_KOD" Type="Int32" Nullable="false" />
           <Property Name="TAM_YETKI" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="ARSTR_1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ARSTR_2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -541,7 +539,7 @@
           <Property Name="ARDATE_1" Type="DateTime" Precision="0" />
           <Property Name="ARDATE_2" Type="DateTime" Precision="0" />
           <Property Name="ARDATE_3" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="TBLKULLANICI" Relationship="Self.FK__TBLYETKI__KULLAN__44FF419A" FromRole="TBLYETKI" ToRole="TBLKULLANICI" />
+          <NavigationProperty Name="TBLKULLANICI" Relationship="Self.FK__TBLYETKI__KULLAN__04E4BC85" FromRole="TBLYETKI" ToRole="TBLKULLANICI" />
         </EntityType>
         <Association Name="FK__TBLDOKUMA__GOREV__5BE2A6F2">
           <End Role="TBLGOREV" Type="Self.TBLGOREV" Multiplicity="1" />
@@ -591,7 +589,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TBLKULLAN__PERSO__3F466844">
+        <Association Name="FK__TBLKULLAN__PERSO__7F2BE32F">
           <End Role="TBLPERSONEL" Type="Self.TBLPERSONEL" Multiplicity="1" />
           <End Role="TBLKULLANICI" Type="Self.TBLKULLANICI" Multiplicity="*" />
           <ReferentialConstraint>
@@ -603,12 +601,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TBLYETKI__KULLAN__44FF419A">
+        <Association Name="FK__TBLYETKI__KULLAN__04E4BC85">
           <End Role="TBLKULLANICI" Type="Self.TBLKULLANICI" Multiplicity="1" />
           <End Role="TBLYETKI" Type="Self.TBLYETKI" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TBLKULLANICI">
-              <PropertyRef Name="KULLANICI_KOD" />
+              <PropertyRef Name="REC_ID" />
             </Principal>
             <Dependent Role="TBLYETKI">
               <PropertyRef Name="KULLANICI_KOD" />
@@ -639,7 +637,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="isTakipEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="isTakipEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="TBLDOKUMAN" EntityType="Self.TBLDOKUMAN" />
           <EntitySet Name="TBLGOREV" EntityType="Self.TBLGOREV" />
           <EntitySet Name="TBLKULLANICI" EntityType="Self.TBLKULLANICI" />
@@ -663,11 +661,11 @@
             <End Role="TBLPROJE" EntitySet="TBLPROJE" />
             <End Role="TBLGOREV" EntitySet="TBLGOREV" />
           </AssociationSet>
-          <AssociationSet Name="FK__TBLKULLAN__PERSO__3F466844" Association="Self.FK__TBLKULLAN__PERSO__3F466844">
+          <AssociationSet Name="FK__TBLKULLAN__PERSO__7F2BE32F" Association="Self.FK__TBLKULLAN__PERSO__7F2BE32F">
             <End Role="TBLPERSONEL" EntitySet="TBLPERSONEL" />
             <End Role="TBLKULLANICI" EntitySet="TBLKULLANICI" />
           </AssociationSet>
-          <AssociationSet Name="FK__TBLYETKI__KULLAN__44FF419A" Association="Self.FK__TBLYETKI__KULLAN__44FF419A">
+          <AssociationSet Name="FK__TBLYETKI__KULLAN__04E4BC85" Association="Self.FK__TBLYETKI__KULLAN__04E4BC85">
             <End Role="TBLKULLANICI" EntitySet="TBLKULLANICI" />
             <End Role="TBLYETKI" EntitySet="TBLYETKI" />
           </AssociationSet>
@@ -685,7 +683,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="isTakipModelStoreContainer" CdmEntityContainer="isTakipEntities1">
+        <EntityContainerMapping StorageEntityContainer="isTakipModelStoreContainer" CdmEntityContainer="isTakipEntities">
           <EntitySetMapping Name="TBLDOKUMAN">
             <EntityTypeMapping TypeName="isTakipModel.TBLDOKUMAN">
               <MappingFragment StoreEntitySet="TBLDOKUMAN">
@@ -755,7 +753,6 @@
                 <ScalarProperty Name="REC_UPUSERNO" ColumnName="REC_UPUSERNO" />
                 <ScalarProperty Name="REC_CHANGED" ColumnName="REC_CHANGED" />
                 <ScalarProperty Name="REC_VERSION" ColumnName="REC_VERSION" />
-                <ScalarProperty Name="KULLANICI_KOD" ColumnName="KULLANICI_KOD" />
                 <ScalarProperty Name="KULLANICI_ADI" ColumnName="KULLANICI_ADI" />
                 <ScalarProperty Name="SIFRE" ColumnName="SIFRE" />
                 <ScalarProperty Name="E_POSTA" ColumnName="E_POSTA" />
