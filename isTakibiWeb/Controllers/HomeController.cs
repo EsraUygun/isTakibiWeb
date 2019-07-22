@@ -2,6 +2,7 @@
 using isTakibiWeb.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -61,7 +62,7 @@ namespace isTakibiWeb.Controllers
             foreach (var item in entities.TBLPERSONEL.ToList())
             {
                  
-                personeller.Add(new SelectListItem { Text = item.PERSONEL_ADI+item.PERSONEL_KOD, Value = item.PERSONEL_KOD });
+                personeller.Add(new SelectListItem { Text = item.PERSONEL_ADI+" / "+item.PERSONEL_KOD, Value = item.PERSONEL_KOD });
 
             }
 
@@ -70,7 +71,7 @@ namespace isTakibiWeb.Controllers
             List<SelectListItem> projekod = new List<SelectListItem>();
             foreach (var item in entities.TBLPROJE.ToList())
             {
-                projekod.Add(new SelectListItem { Text = item.PROJE_ADI + item.PROJE_KOD, Value = item.PROJE_KOD });
+                projekod.Add(new SelectListItem { Text = item.PROJE_ADI +" / "+ item.PROJE_KOD, Value = item.PROJE_KOD });
 
             }
 
@@ -101,7 +102,8 @@ namespace isTakibiWeb.Controllers
 
         public ActionResult  projeGörüntüle()
         {
-            return View();
+
+            return View(entities.TBLPROJE.ToList());
         }
         public ActionResult personelEkle()
         {
@@ -110,19 +112,30 @@ namespace isTakibiWeb.Controllers
         }
         public ActionResult personelCheck(string personelkod)
         {
-            var SearchList = from m in entities.TBLPERSONEL
-                             select m;
-            if (!String.IsNullOrEmpty(personelkod))
-            {
-                SearchList = SearchList.Where(s => s.PERSONEL_KOD.Contains(personelkod));
-            }
-            if (Request.IsAjaxRequest())
-                return PartialView(SearchList);
+            TBLPERSONEL personeller = new TBLPERSONEL();
+            personeller = entities.TBLPERSONEL.Find(personelkod);
 
-            return View(SearchList);
+            return View(personeller);
         }
 
-      
+        [HttpGet]
+        public JsonResult GetJsonTest()
+        {
+            TBLPERSONEL personeller = new TBLPERSONEL();
+            //personeller = entities.TBLPERSONEL.Find(personelkod);
+            personeller.PERSONEL_ADI = "sedef";
+            return Json(personeller, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult GetPipeMaterialValues(string id)
+        {
+
+            TBLPERSONEL personeller = new TBLPERSONEL();
+            personeller = entities.TBLPERSONEL.Find(id);
+           
+            return Json(personeller, JsonRequestBehavior.AllowGet);
+        }
         [HttpPost]
         public ActionResult personelEkle(TBLPERSONEL model)
         {
@@ -162,24 +175,67 @@ namespace isTakibiWeb.Controllers
 
             //return RedirectToAction("kullanıcıEkle", new { personel_kod = model.PERSONEL_KOD });
         }
-        public ActionResult personelDetails(int? personelkod)
+        public ActionResult personelDetails(string id)
         {
-            var personeller = from f in entities.TBLPERSONEL
-                              select f;
-            //if (String.IsNullOrEmpty(personelkod))
-            //{
-            //    return RedirectToAction("Index");
-            //}
-            //if (!String.IsNullOrEmpty(personelkod))
-            //{
-            //    personeller = personeller.Where(f => f.PERSONEL_KOD.Contains(personelkod) );
-            //}
-            
-            return View(entities.TBLPERSONEL.Find(personelkod));
+            TBLPERSONEL personeller = new TBLPERSONEL();
+            personeller = entities.TBLPERSONEL.Find(id);
+
+            if (String.IsNullOrEmpty(id))
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(personeller);
+            }
            
         }
 
-        public ActionResult kullanıcıEkle(string personel_kod)
+        public ActionResult Sil(string id)
+        {
+            TBLPERSONEL personeller = new TBLPERSONEL();
+            personeller = entities.TBLPERSONEL.Find(id);
+            entities.TBLPERSONEL.Remove(personeller);
+            entities.SaveChanges();
+            return RedirectToAction("personelListesi");
+        }
+
+
+
+        public ActionResult personelDüzenle(string id)
+        {
+            TBLPERSONEL personeller = new TBLPERSONEL();
+            personeller = entities.TBLPERSONEL.Find(id);
+
+            if (String.IsNullOrEmpty(id))
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(personeller);
+            }
+
+        }
+        [HttpPost]
+        public ActionResult personelDüzenle(TBLPERSONEL model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.REC_UPDATE = DateTime.Now;
+                model.REC_UPUSERNAME = (String)Session["UserName"];
+                model.REC_UPUSERNO = (int)Session["UserId"];
+                model.REC_CHANGED = "1";
+                model.REC_VERSION = CreateCommon.REC_VERSION;
+                entities.Entry(model).State = EntityState.Modified;
+                entities.SaveChanges();
+                return RedirectToAction("Index");
+            }
+        
+
+            return RedirectToAction("personelListele");
+        }
+            public ActionResult kullanıcıEkle(string personel_kod)
         {
             ViewBag.personel_kod = personel_kod;
             return View();
@@ -256,7 +312,18 @@ namespace isTakibiWeb.Controllers
             Session["UserId"] = obj.REC_ID;
             Session["UserName"] = obj.KULLANICI_ADI;
             CreateCommon.UserName = obj.KULLANICI_ADI;
-            return RedirectToAction("Index");
+
+            var yetki = entities.TBLYETKI.Where(y => y.KULLANICI_KOD.Equals(obj.REC_ID)).FirstOrDefault();
+            
+            if(yetki.TAM_YETKI.Equals("1"))
+            {
+                return RedirectToAction("Index","Home");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Personel");
+            }
+           
 
         }
         public ActionResult LogOut()

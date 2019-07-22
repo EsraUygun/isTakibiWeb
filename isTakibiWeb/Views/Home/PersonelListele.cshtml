@@ -4,20 +4,6 @@
     Layout = "~/Views/Shared/MyLayout.cshtml";
 }
 
-<h2>PersonelListele</h2>
-
-
-@*@using (Html.BeginForm("PersonelListele", "Home", FormMethod.Post))
-{
-<p>
-
-    search:@Html.TextBox("aranacakKelime")
-    <input type="submit" value="Filtrele" />
-
-</p>
-}*@
-
-
 
 <div class="container-fluid">
     <!-- Breadcrumbs-->
@@ -97,9 +83,19 @@
 
 
                             <td>
-                                @Html.ActionLink("Düzenle", "personelDüzenle",new {id= item.PERSONEL_KOD } ) |
-                                @Html.ActionLink("Ayrıntılar", "personelDetails","Home", new { id = item.REC_ID }) |
-                                @Html.ActionLink("Sil", "personelSil", new { id = item.PERSONEL_KOD })
+                                @using (Html.BeginForm("personelDüzenle", "Home", new { id = item.PERSONEL_KOD } ,FormMethod.Get))
+                                {
+                                    <input type="submit" value="Düzenle" />
+                                }
+                                @using (Html.BeginForm("personelDetails", "Home", new { id = item.PERSONEL_KOD }))
+                                {
+                                    <input type="submit" value="Ayrıntılar" />
+                                }
+                                @using (Html.BeginForm("Sil", "Home", new { id = item.PERSONEL_KOD }))
+                                {
+                                    <input type="submit" value="Sil"  onclick="return confirm ('Silmek istediğinize Emin misiniz?')"/>
+                                }
+                               
                             </td>
                         </tr>
                         }

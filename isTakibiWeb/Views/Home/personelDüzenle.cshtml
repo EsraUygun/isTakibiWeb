@@ -1,0 +1,59 @@
+﻿@model isTakibiWeb.Models.TBLPERSONEL
+
+@{
+    ViewBag.Title = "personelDüzenle";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<h2>Personel Düzenle</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <div class="col-md-6">
+            @Html.EditorFor(s => s.PERSONEL_KOD, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-6">
+            @Html.EditorFor(s => s.PERSONEL_ADI, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-6">
+            @Html.EditorFor(s => s.PERSONEL_SOYADI, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-6">
+            @Html.EditorFor(s => s.TEL_NO, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+   <div>
+       @*@Html.HiddenFor(s => s.REC_CHANGED, new { @id= Model.REC_CHANGED, @value='1' })*@
+       @Html.HiddenFor(s => s.REC_DATE)
+       @Html.HiddenFor(s => s.REC_USERNAME)
+       @Html.HiddenFor(s => s.REC_USERNO)
+       @Html.HiddenFor(s=> s.REC_USERNAME)
+       
+
+
+   </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Geri Dön", "personelListele")
+</div>
