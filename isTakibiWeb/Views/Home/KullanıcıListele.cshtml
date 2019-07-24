@@ -5,8 +5,6 @@
     Layout = "~/Views/Shared/MyLayout.cshtml";
 }
 
-<h2>KullanıcıListele</h2>
-
 
 <div class="container-fluid">
     <!-- Breadcrumbs-->
@@ -18,7 +16,7 @@
     </ol>
     <div class="card mb-3">
         <div class="card-header">
-            <i class="fa fa-table"></i> personel tablosu
+            <i class="fa fa-table"></i> kullanıcı tablosu
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -27,44 +25,21 @@
                         <tr>
 
                             <th>
-                                @Html.DisplayNameFor(model => model.PERSONEL_KOD)
+                                @Html.DisplayName("Personel Kod")
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.REC_ID)
+                                @Html.DisplayName("Kullanıcı Kod")
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.KULLANICI_ADI)
+                                @Html.DisplayName("Kullanıcı Adı")
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.SIFRE)
+                                @Html.DisplayName("Şifre")
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.E_POSTA)
+                                @Html.DisplayName("Email")
                             </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_DATE)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_USERNAME)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_USERNO)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_UPDATE)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_UPUSERNAME)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_UPUSERNO)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_CHANGED)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.REC_VERSION)
-                            </th>
+                            
       
                             <th></th>
                         </tr>
@@ -90,35 +65,10 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.E_POSTA)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.REC_DATE)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.REC_USERNAME)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.REC_USERNO)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.REC_UPDATE)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.REC_UPUSERNAME)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.REC_UPUSERNO)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.REC_CHANGED)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.REC_VERSION)
-                            </td>
                             
-
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.REC_ID }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.REC_ID }) |
+                                @Html.ActionLink("Edit", "Edit", new { id = item.REC_ID }) 
+                                @Html.ActionLink("Details", "Details", new { id = item.REC_ID }) 
                                 @Html.ActionLink("Delete", "Delete", new { id = item.REC_ID })
                             </td>
                         </tr>

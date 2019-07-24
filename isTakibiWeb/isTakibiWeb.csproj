@@ -138,8 +138,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Classes\CreateCommon.cs" />
+    <Compile Include="Classes\gorevTablo.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
+    <Compile Include="Controllers\ProjeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -240,6 +242,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="image\assignment.png" />
     <Content Include="image\checklist.png" />
     <Content Include="image\homepage.png" />
     <Content Include="image\network.png" />
@@ -383,6 +386,9 @@
     <Content Include="Views\Home\personelDüzenle.cshtml" />
     <Content Include="Views\Home\projeGörüntüle.cshtml" />
     <Content Include="Views\Personel\Index.cshtml" />
+    <Content Include="Views\Proje\ProjeDetay.cshtml" />
+    <Content Include="Views\Personel\GörevGörüntüle.cshtml" />
+    <Content Include="Views\Home\GorevAta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

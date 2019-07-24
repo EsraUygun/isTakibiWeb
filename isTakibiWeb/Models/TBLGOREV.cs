@@ -44,6 +44,7 @@ namespace isTakibiWeb.Models
         public Nullable<System.DateTime> ARDATE_1 { get; set; }
         public Nullable<System.DateTime> ARDATE_2 { get; set; }
         public Nullable<System.DateTime> ARDATE_3 { get; set; }
+        public string GOREV_TANIMI { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TBLDOKUMAN> TBLDOKUMAN { get; set; }

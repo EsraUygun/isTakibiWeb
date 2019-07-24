@@ -1,0 +1,47 @@
+﻿
+ @model Tuple<isTakibiWeb.Models.TBLGOREV,isTakibiWeb.Models.TBLPROJEPERSONEL>
+
+@{
+    ViewBag.Title = "ProjeDetay";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<h2>ProjeDetay</h2>
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor( m=> m.Item2.PROJE_KOD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Item2.PERSONEL_KOD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Item2.GOREV_TANIMI)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.Item1.DURUM)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => m.Item2.PROJE_KOD)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => m.Item2.PERSONEL_KOD)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => m.Item2.GOREV_TANIMI)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => m.Item1.DURUM)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

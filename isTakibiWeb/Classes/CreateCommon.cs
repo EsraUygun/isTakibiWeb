@@ -13,4 +13,5 @@ namespace isTakibiWeb.Classes
         public static string ilkSifre = "Artez";
           
     }
+
 }

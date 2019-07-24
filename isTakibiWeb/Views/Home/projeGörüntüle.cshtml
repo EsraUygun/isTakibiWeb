@@ -65,11 +65,14 @@
                                 </td>
 
                                 <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.PROJE_KOD }) 
+                                    @Html.ActionLink("Düzenle", "ProjeDüzenle", "Proje", new { id = item.PROJE_KOD }, null)
                                     <br />
-                                    @Html.ActionLink("Details", "Details", new { id = item.PROJE_KOD }) 
+                                    @using (Html.BeginForm("ProjeDetay", "Proje", new { id = item.PROJE_KOD }))
+                                    {
+                                        <input type="submit" value="Detay" />
+                                    }
                                     <br />
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.PROJE_KOD })
+                                    @Html.ActionLink("Sil", "ProjeSil", "Proje", new { id = item.PROJE_KOD }, null)
                                 </td>
                             </tr>
                         }

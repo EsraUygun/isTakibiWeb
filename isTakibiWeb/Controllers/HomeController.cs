@@ -37,15 +37,13 @@ namespace isTakibiWeb.Controllers
         public ActionResult projeEkle(TBLPROJE model)
         {
 
-           
-
             model.REC_DATE = DateTime.Now;
          
             model.REC_UPDATE = DateTime.Now;
-            model.REC_UPUSERNAME = "esra33";
-            model.REC_UPUSERNO = 33;
-            model.REC_USERNAME = "esra33";
-            model.REC_USERNO = 33;
+            model.REC_UPUSERNAME =(string) Session["UserName"];
+            model.REC_UPUSERNO = (int) Session["UserId"];
+            model.REC_USERNAME = (string)Session["UserName"];
+            model.REC_USERNO = (int)Session["UserId"];
             model.REC_CHANGED = "0";
             model.REC_VERSION = CreateCommon.REC_VERSION;
             entities.TBLPROJE.Add(model);
@@ -56,8 +54,6 @@ namespace isTakibiWeb.Controllers
 
         public ActionResult ProjePersonel()
         {
-           
-
             List<SelectListItem> personeller = new List<SelectListItem>();
             foreach (var item in entities.TBLPERSONEL.ToList())
             {
@@ -80,6 +76,14 @@ namespace isTakibiWeb.Controllers
             return View();
 
         }
+
+        [HttpPost]
+        public JsonResult Test()
+        {
+            var routeValue = RouteData.Values["id"];
+            return null;
+
+        }
         [HttpPost]
         public ActionResult ProjePersonel(TBLPROJEPERSONEL model)
         {
@@ -93,10 +97,7 @@ namespace isTakibiWeb.Controllers
             model.REC_CHANGED = "0";
             model.REC_VERSION = CreateCommon.REC_VERSION;
             entities.TBLPROJEPERSONEL.Add(model);
-            
-
             entities.SaveChanges();
-
             return RedirectToAction("ProjePersonel");
         }
 
@@ -118,12 +119,12 @@ namespace isTakibiWeb.Controllers
             return View(personeller);
         }
 
-        [HttpGet]
-        public JsonResult GetJsonTest()
+        [HttpPost]
+        public JsonResult GetJsonTest(string personelkod)
         {
             TBLPERSONEL personeller = new TBLPERSONEL();
-            //personeller = entities.TBLPERSONEL.Find(personelkod);
-            personeller.PERSONEL_ADI = "sedef";
+            personeller = entities.TBLPERSONEL.Find(personelkod);
+            
             return Json(personeller, JsonRequestBehavior.AllowGet);
         }
 
@@ -174,6 +175,45 @@ namespace isTakibiWeb.Controllers
             return RedirectToAction("Index");
 
             //return RedirectToAction("kullanıcıEkle", new { personel_kod = model.PERSONEL_KOD });
+        }
+        public ActionResult GorevAta()
+        {
+            List<SelectListItem> projekod = new List<SelectListItem>();
+            foreach (var item in entities.TBLPROJE.ToList())
+            {
+                projekod.Add(new SelectListItem { Text = item.PROJE_ADI + " / " + item.PROJE_KOD, Value = item.PROJE_KOD });
+
+            }
+
+            ViewBag.PROJE_KOD = projekod;
+
+            List<SelectListItem> personeller = new List<SelectListItem>();
+            foreach (var item in entities.TBLPERSONEL.ToList())
+            {
+
+                personeller.Add(new SelectListItem { Text = item.PERSONEL_ADI + " / " + item.PERSONEL_KOD, Value = item.PERSONEL_KOD });
+
+            }
+
+            ViewBag.PERSONEL_KOD = personeller;
+
+            return View();
+        }
+
+        [HttpPost] ActionResult GorevAta(TBLGOREV model)
+        {
+            model.REC_DATE = DateTime.Now;
+            model.REC_UPDATE = DateTime.Now;
+            model.REC_UPUSERNAME = (String)Session["UserName"];
+            model.REC_UPUSERNO = (int)Session["UserId"];
+            model.REC_USERNAME = (String)Session["UserName"];
+            model.REC_USERNO = (int)Session["UserId"];
+            model.REC_CHANGED = "0";
+            model.REC_VERSION = CreateCommon.REC_VERSION;
+            model.DURUM = '1';
+            entities.TBLGOREV.Add(model);
+            entities.SaveChanges();
+            return View();
         }
         public ActionResult personelDetails(string id)
         {

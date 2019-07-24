@@ -5,69 +5,57 @@
     Layout = "~/Views/Shared/MyLayout.cshtml";
 }
 
-<h2>projeEkle</h2>
-
+<h3>Proje Ekle</h3>
+<br />
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>TBLPROJE</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PROJE_KOD, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PROJE_KOD, "PROJE_KOD", new { htmlAttributes = new { @class = "form-control" } })
-
-                @Html.ValidationMessageFor(model => model.PROJE_KOD, "", new { @class = "text-danger" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.PROJE_KOD, new { htmlAttributes = new { @class = "form-control", @placeholder = "Proje Kodu" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.PROJE_ADI, new { htmlAttributes = new { @class = "form-control", @placeholder = "Proje Adı" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.PROJE_TANIMI, new { htmlAttributes = new { @class = "form-control", @placeholder = "Proje Açıklaması" } })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PROJE_ADI, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PROJE_ADI, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PROJE_ADI, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PROJE_TANIMI, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PROJE_TANIMI, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PROJE_TANIMI, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PROJE_TURU, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("PROJETURU", null, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PROJE_TURU, "", new { @class = "text-danger" })
+            <div class="col-md-6">
+                @Html.DropDownList("PROJETURU", null, htmlAttributes: new { @class = "form-control select-add-placeholder" })
             </div>
         </div>
 
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Oluştur" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
+
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script type="text/javascript">
     $(function () {
         $('#PROJE_KOD').blur(function () {
-        $("#PROJE_ADI").val("TEST");
-        alert('text');
-    });
+            $("#PROJE_ADI").val("TEST");
+            alert('text');
+        });
     });
 </script>
-
+<script>
+$(".select-add-placeholder").prepend("<option value='' disabled selected>Proje Türü</option>");
+ </script>
 @*<div>
         @Html.ActionLink("Back to List", "Index")
     </div>*@
