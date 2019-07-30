@@ -6,6 +6,7 @@
 }
 
 
+
 <div class="container-fluid">
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
@@ -21,36 +22,35 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
                     <thead>
                         <tr>
-
                             <th>
-                                @Html.DisplayName("Proje Kodu")
+                                @Html.DisplayNameFor(model => model.PROJE_KOD)
                             </th>
                             <th>
-                                @Html.DisplayName("Versiyon Adı")
+                                @Html.DisplayNameFor(model => model.REC_VERSION)
                             </th>
                             <th>
-                                @Html.DisplayName("Proje Adı")
+                                @Html.DisplayNameFor(model => model.PROJE_ADI)
                             </th>
                             <th>
-                                @Html.DisplayName("Proje Türü")
+                                @Html.DisplayNameFor(model => model.PROJE_TANIMI)
                             </th>
-
+                            <th>
+                                @Html.DisplayNameFor(model => model.PROJE_TURU)
+                            </th>
 
                             <th></th>
                         </tr>
                     </thead>
-
                     <tbody>
-
                         @foreach (var item in Model)
                         {
                             <tr>
-
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PROJE_KOD)
-                                </td>
+                               <td>
+                                   @Html.DisplayFor(modelitem => item.PROJE_KOD)
+                               </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.REC_VERSION)
                                 </td>
@@ -58,24 +58,27 @@
                                     @Html.DisplayFor(modelItem => item.PROJE_ADI)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.PROJE_TANIMI)
+                                </td>
+                                <td>
                                     @Html.DisplayFor(modelItem => item.PROJE_TURU)
                                 </td>
 
-
                                 <td>
-                                    @using (Html.BeginForm("ProjeDüzenle", "Proje", new { id = item.PROJE_KOD }, FormMethod.Get))
-                                    {
-                                        <input type="submit" value="Düzenle" />
-                                    }
-                                    @using (Html.BeginForm("ProjeDetay", "Proje", new { id = item.PROJE_KOD }))
-                                    {
-                                        <input type="submit" value="Ayrıntılar" />
-                                    }
-                                    @using (Html.BeginForm("ProjeSil", "Proje", new { id = item.PROJE_KOD }))
-                                    {
-                                        <input type="submit" value="Sil" onclick="return confirm ('Silmek istediğinize Emin misiniz?')" />
-                                    }
 
+                                    @Html.ActionLink("Düzenle", "ProjeDüzenle","Proje", new { id = item.REC_ID })
+                                    <br />
+                                    @using (Html.BeginForm("ProjeDetay", "Proje", new { id = item.REC_ID }))
+                                    {
+                                        <input type="submit" value="Detay" />
+                                    }
+                                    <br />
+                                    <form action="~/Proje/ProjeSil" method="get">
+                                        <input type="hidden" id="id" value=item.PROJE_KOD />
+                                        <input type="submit" value=" Sil" />
+                                    </form>
+                               
+                                    @*@Html.ActionLink("Sil", "ProjeSil", "Proje", new { id = item.PROJE_KOD }, null)*@
                                 </td>
                             </tr>
                         }
@@ -87,8 +90,6 @@
         </div>
     </div>
 </div>
-
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fa fa-angle-up"></i>
 </a>
-

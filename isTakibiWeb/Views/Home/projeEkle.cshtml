@@ -31,7 +31,13 @@
 
         <div class="form-group">
             <div class="col-md-6">
-                @Html.DropDownList("PROJETURU", null, htmlAttributes: new { @class = "form-control select-add-placeholder" })
+                @Html.DropDownListFor(model => model.PROJE_TURU,new List<SelectListItem>
+                   { new SelectListItem{Text="ÖZEL", Value="özel"},
+                     new SelectListItem{Text="MASAÜSTÜ", Value="masaüstü"},
+                     new SelectListItem{Text="WEB", Value="web"},
+                     new SelectListItem{Text="MOBİL", Value="mobil"},
+
+           }, "Proje türü")
             </div>
         </div>
 
@@ -44,18 +50,37 @@
     </div>
 }
 
-<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="@Url.Content("~/bootstrap.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery-3.3.1.min.js")" type="text/javascript"></script>
+
+
 <script type="text/javascript">
-    $(function () {
-        $('#PROJE_KOD').blur(function () {
-            $("#PROJE_ADI").val("TEST");
-            alert('text');
+    $(document).ready(function () {
+        $("#PROJE_KOD").on("change", function () {
+            var val = document.getElementById("PROJE_KOD").value;
+            $.ajax({
+                url: '/Test/ProjeTest/' + val,
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    $("#PROJE_ADI").val(data.PROJE_ADI)
+                    $("#PROJE_TANIMI").val(data.PROJE_TANIMI);
+                    $("PROJE_TURU").val(data.PROJE_TURU)
+                },
+                error: function (hata, ajaxOptions, thrownError) {
+                    alert(hata.status);
+                    alert(thrownError);
+                    alert(hata.responseText);
+                }
+            });
         });
     });
+
 </script>
+
 <script>
-$(".select-add-placeholder").prepend("<option value='' disabled selected>Proje Türü</option>");
- </script>
+    $(".select-add-placeholder").prepend("<option value='' disabled selected>Proje Türü</option>");
+</script>
 @*<div>
         @Html.ActionLink("Back to List", "Index")
     </div>*@

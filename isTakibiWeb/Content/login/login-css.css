@@ -1,4 +1,4 @@
-﻿@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+﻿/*@import url(https://fonts.googleapis.com/css?family=Roboto:300);*/
 
 .login-page {
     width: 360px;
@@ -9,7 +9,7 @@
 .form {
     position: relative;
     z-index: 1;
-    background: #FFFFFF;
+    background: rgba(255, 255, 255, 0.18);
     max-width: 360px;
     margin: 0 auto 100px;
     padding: 45px;
@@ -33,7 +33,7 @@
         font-family: "Roboto", sans-serif;
         text-transform: uppercase;
         outline: 0;
-        background: #4CAF50;
+        background: #0797ea;
         width: 100%;
         border: 0;
         padding: 15px;
@@ -45,7 +45,7 @@
     }
 
         .form button:hover, .form button:active, .form button:focus {
-            background: #43A047;
+            background:#123eeb;
         }
 
     .form .message {
@@ -104,12 +104,8 @@
             }
 
 body {
-    background: #76b852; /* fallback for old browsers */
-    background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-    background: -moz-linear-gradient(right, #76b852, #8DC26F);
-    background: -o-linear-gradient(right, #76b852, #8DC26F);
-    background: linear-gradient(to left, #76b852, #8DC26F);
-    font-family: "Roboto", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    background-image: url('../login/partnership (1).jpg');
+    background-size:100% 100%;
+    height:auto;
+   
 }

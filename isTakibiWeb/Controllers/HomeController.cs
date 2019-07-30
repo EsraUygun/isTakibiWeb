@@ -2,7 +2,9 @@
 using isTakibiWeb.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -29,7 +31,7 @@ namespace isTakibiWeb.Controllers
                 PROJETURU.Add(new SelectListItem { Text = item, Value = item });
             }
 
-            ViewBag.PROJETURU = PROJETURU;
+            ViewBag.PROJE_TURU = PROJETURU;
             return View();
         }
 
@@ -54,20 +56,25 @@ namespace isTakibiWeb.Controllers
 
         public ActionResult ProjePersonel()
         {
+
+            //ProjePersonelViewModel ProjePersonelVM = new ProjePersonelViewModel();
+            //ProjePersonelVM.TBLPERSONEL = new SelectList(entities.TBLPERSONEL, "PERSONEL_KOD", "PERSONEL_ADI");
+            //ProjePersonelVM.TBLPROJEPERSONEL = new SelectList(entities.TBLPROJEPERSONEL, "PROJE_KOD", "PROJE_ADI");
+
+
+
             List<SelectListItem> personeller = new List<SelectListItem>();
             foreach (var item in entities.TBLPERSONEL.ToList())
             {
-                 
-                personeller.Add(new SelectListItem { Text = item.PERSONEL_ADI+" / "+item.PERSONEL_KOD, Value = item.PERSONEL_KOD });
-
+                personeller.Add(new SelectListItem { Text = item.PERSONEL_KOD + "/" + item.PERSONEL_ADI + " " + item.PERSONEL_SOYADI, Value = item.PERSONEL_KOD });
             }
-
             ViewBag.PERSONEL_KOD = personeller;
+
 
             List<SelectListItem> projekod = new List<SelectListItem>();
             foreach (var item in entities.TBLPROJE.ToList())
             {
-                projekod.Add(new SelectListItem { Text = item.PROJE_ADI +" / "+ item.PROJE_KOD, Value = item.PROJE_KOD });
+                projekod.Add(new SelectListItem { Text = item.PROJE_ADI + " / " + item.PROJE_KOD, Value = item.PROJE_KOD });
 
             }
 
@@ -77,13 +84,6 @@ namespace isTakibiWeb.Controllers
 
         }
 
-        [HttpPost]
-        public JsonResult Test()
-        {
-            var routeValue = RouteData.Values["id"];
-            return null;
-
-        }
         [HttpPost]
         public ActionResult ProjePersonel(TBLPROJEPERSONEL model)
         {
@@ -101,10 +101,44 @@ namespace isTakibiWeb.Controllers
             return RedirectToAction("ProjePersonel");
         }
 
+
+        public JsonResult ProjePersonelTest()
+        {
+            var routeValue = RouteData.Values["id"];
+           
+
+            SqlConnection conn = new SqlConnection("Data Source=ESRA\\SQLEXPRESS; Initial Catalog=isTakip;integrated security=True;MultipleActiveResultSets=True;");
+            conn.Open();
+            SqlCommand command = new SqlCommand("SELECT  PROJEPERSONEL.PROJE_KOD ,PROJEPERSONEL.PERSONEL_KOD, PERSONEL.PERSONEL_ADI, PERSONEL.PERSONEL_SOYADI FROM TBLPERSONEL PERSONEL, TBLPROJEPERSONEL PROJEPERSONEL WHERE PROJEPERSONEL.PERSONEL_KOD=PERSONEL.PERSONEL_KOD AND PROJEPERSONEL.PROJE_KOD='"+routeValue+"'", conn);
+
+            DataTable dataTable = new DataTable();
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(command);
+            sqlDataAdapter.Fill(dataTable);
+            sqlDataAdapter.Dispose();
+
+            List<SelectListItem> personeller = new List<SelectListItem>();
+            if (command != null)
+            {
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    personeller.Add(new SelectListItem { Text = dataTable.Rows[i]["PERSONEL_KOD"].ToString() + "/" + dataTable.Rows[i]["PERSONEL_ADI"].ToString() + " " + dataTable.Rows[i]["PERSONEL_SOYADI"].ToString(), Value = dataTable.Rows[i]["PERSONEL_KOD"].ToString() });
+
+                }
+
+            }
+
+
+            return Json(new SelectList(personeller, "Value", "Text", JsonRequestBehavior.AllowGet));
+        }
         public ActionResult  projeGörüntüle()
         {
 
             return View(entities.TBLPROJE.ToList());
+        }
+
+        public ActionResult ProjeDüzenle(string projekod)
+        {
+            return View();
         }
         public ActionResult personelEkle()
         {
@@ -176,31 +210,35 @@ namespace isTakibiWeb.Controllers
 
             //return RedirectToAction("kullanıcıEkle", new { personel_kod = model.PERSONEL_KOD });
         }
+
+    
+
         public ActionResult GorevAta()
         {
             List<SelectListItem> projekod = new List<SelectListItem>();
             foreach (var item in entities.TBLPROJE.ToList())
             {
-                projekod.Add(new SelectListItem { Text = item.PROJE_ADI + " / " + item.PROJE_KOD, Value = item.PROJE_KOD });
+                projekod.Add(new SelectListItem { Text = item.PROJE_KOD + " / "+item.PROJE_ADI  , Value = item.PROJE_KOD });
 
             }
-
+            
             ViewBag.PROJE_KOD = projekod;
 
-            List<SelectListItem> personeller = new List<SelectListItem>();
-            foreach (var item in entities.TBLPERSONEL.ToList())
-            {
+            //List<SelectListItem> personeller = new List<SelectListItem>();
+            //foreach (var item in entities.TBLPERSONEL.ToList())
+            //{
 
-                personeller.Add(new SelectListItem { Text = item.PERSONEL_ADI + " / " + item.PERSONEL_KOD, Value = item.PERSONEL_KOD });
+            //    personeller.Add(new SelectListItem { Text = item.PERSONEL_ADI + " / " + item.PERSONEL_KOD, Value = item.PERSONEL_KOD });
 
-            }
+            //}
 
-            ViewBag.PERSONEL_KOD = personeller;
+            //ViewBag.PERSONEL_KOD = personeller;
 
             return View();
         }
 
-        [HttpPost] ActionResult GorevAta(TBLGOREV model)
+        [HttpPost]
+        ActionResult GorevAta(TBLGOREV model)
         {
             model.REC_DATE = DateTime.Now;
             model.REC_UPDATE = DateTime.Now;
@@ -237,7 +275,7 @@ namespace isTakibiWeb.Controllers
             personeller = entities.TBLPERSONEL.Find(id);
             entities.TBLPERSONEL.Remove(personeller);
             entities.SaveChanges();
-            return RedirectToAction("personelListesi");
+            return RedirectToAction("PersonelListesi");
         }
 
 
@@ -348,20 +386,31 @@ namespace isTakibiWeb.Controllers
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
-            var obj = entities.TBLKULLANICI.Where(a => a.KULLANICI_ADI.Equals(username) && a.SIFRE.Equals(password)).FirstOrDefault();
-            Session["UserId"] = obj.REC_ID;
-            Session["UserName"] = obj.KULLANICI_ADI;
-            CreateCommon.UserName = obj.KULLANICI_ADI;
-
-            var yetki = entities.TBLYETKI.Where(y => y.KULLANICI_KOD.Equals(obj.REC_ID)).FirstOrDefault();
-            
-            if(yetki.TAM_YETKI.Equals("1"))
+            if (username != "" & password != "")
             {
-                return RedirectToAction("Index","Home");
+                var obj = entities.TBLKULLANICI.Where(a => a.KULLANICI_ADI.Equals(username) && a.SIFRE.Equals(password)).FirstOrDefault();
+                Session["UserId"] = obj.REC_ID;
+                Session["UserName"] = obj.KULLANICI_ADI;
+                CreateCommon.UserName = obj.KULLANICI_ADI;
+                if (obj.SIFRE.Equals(CreateCommon.ilkSifre))
+                {
+                    return RedirectToAction("KullanıcıGüncelle");
+                }
+                var yetki = entities.TBLYETKI.Where(y => y.KULLANICI_KOD.Equals(obj.REC_ID)).FirstOrDefault();
+
+                if (yetki.TAM_YETKI.Equals("1"))
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Personel");
+                }
             }
             else
             {
-                return RedirectToAction("Index", "Personel");
+                TempData["Message"] = "kullanıcı adını veya şifreyi boş bırakmayın !!!!";
+                return RedirectToAction("Login");
             }
            
 
@@ -371,6 +420,32 @@ namespace isTakibiWeb.Controllers
             FormsAuthentication.SignOut();
             Session.Abandon();
             return RedirectToAction("Login", "Home");
+        }
+
+
+        public ActionResult KullanıcıGüncelle()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult KullanıcıGüncelle(string username,string password,string eposta)
+        {
+            int userid = (int)Session["UserId"];
+            TBLKULLANICI obj = new TBLKULLANICI();
+            obj = entities.TBLKULLANICI.Where(a => a.REC_ID==userid).FirstOrDefault();
+            obj.KULLANICI_ADI = username;
+            obj.SIFRE = password;
+            obj.REC_UPUSERNO = (int)Session["UserId"];
+            obj.REC_UPUSERNAME = username;
+            obj.REC_UPDATE = DateTime.Now;
+            obj.E_POSTA = eposta;
+            obj.REC_CHANGED = "1";
+            obj.REC_VERSION = CreateCommon.REC_VERSION;
+            entities.Entry(obj).State = EntityState.Modified;
+            entities.SaveChanges();
+
+
+            return RedirectToAction("Index", "Personel");
         }
     }
 }

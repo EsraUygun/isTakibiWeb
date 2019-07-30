@@ -1,0 +1,19 @@
+﻿
+ <link rel="stylesheet" type="text/css" href="~/Content/login/login-css.css">
+
+    <div class="login-page">
+        <div class="form">
+            <form class="login-form" action="~/Home/KullanıcıGüncelle" method="post">
+                <h4>Kullanıcı Güncelle</h4>
+                <input type="text" name="eposta" placeholder="e posta" />
+                <input type="text" name="username" placeholder="Yeni Kullanıcı Adı" />
+                <input type="password" name="password" placeholder="Yeni Şifre" />
+                <button type="submit">Kaydet</button>
+            </form>
+        </div>
+    </div>
+<div>
+    @RenderBody();
+</div>
+    <script src="~/Content/login/login-js.js"></script>
+   

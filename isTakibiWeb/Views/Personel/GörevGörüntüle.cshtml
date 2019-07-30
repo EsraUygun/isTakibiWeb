@@ -1,29 +1,52 @@
 ﻿@model List<isTakibiWeb.Classes.gorevTablo>
-  
+
 @{
     ViewBag.Title = "GörevGörüntüle";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div><table>
-    <tr>
-        <th>proje adı</th>
-        <th>görev tanımı</th>
- 
-    </tr>
-    @foreach (var item in Model)
+
+@foreach (var item in Model)
+{
+    if (item.DURUM == 1)
     {
-        <tr>
-            <td>@item.PROJE_ADI</td>
-            <td>@item.GOREV_TANIMI</td>
-         
-        </tr>
+
+        <div class="card" style="width: 18rem">
+            <div class="card-body">
+                <h5 class="card-title">@item.PROJE_ADI</h5>
+                <p class="card-text">@item.GOREV_TANIMI</p>
+                @using (Html.BeginForm("gorevonay", "Personel", new { id = item.GOREV_KOD }, FormMethod.Get))
+                {
+                    <input type="submit" value="Onayla" class="btn btn-primary" />
+                }
+
+            </div>
+        </div>
+   
+    }    if (item.DURUM == 2)
+    {
+        <div>
+            <b>Proje Adı:</b>
+            @Html.DisplayName(item.PROJE_ADI)
+            <br />
+            <b>Görev Tanımı:</b>
+            @Html.DisplayName(item.GOREV_TANIMI)
+            <br />
+
+
+            @using (Html.BeginForm("gorevonay", "Personel", new { id = item.GOREV_KOD }, FormMethod.Get))
+            {
+                <input type="submit" value="Tamamla" />
+            }
+
+        </div>
     }
 
 
-</table>
 
 
 
-    </div>
+}
+
+
 

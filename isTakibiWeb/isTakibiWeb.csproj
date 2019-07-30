@@ -138,10 +138,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Classes\CreateCommon.cs" />
+    <Compile Include="Classes\db.cs" />
     <Compile Include="Classes\gorevTablo.cs" />
+    <Compile Include="Classes\ProjePersonelViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
     <Compile Include="Controllers\ProjeController.cs" />
+    <Compile Include="Controllers\ProjePersonelController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -208,6 +212,9 @@
     <Content Include="Content\login.html" />
     <Content Include="Content\login\login-css.css" />
     <Content Include="Content\login\login-js.js" />
+    <Content Include="Content\login\partnership %281%29.jpg" />
+    <Content Include="Content\login\partnership2.jpg" />
+    <Content Include="Content\login\partnerships-1.jpg" />
     <Content Include="Content\navbar.html" />
     <Content Include="Content\register.html" />
     <Content Include="Content\tables.html" />
@@ -242,6 +249,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\login\partnership.png" />
     <Content Include="image\assignment.png" />
     <Content Include="image\checklist.png" />
     <Content Include="image\homepage.png" />
@@ -384,14 +392,20 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\personelDetails.cshtml" />
     <Content Include="Views\Home\personelDüzenle.cshtml" />
-    <Content Include="Views\Home\projeGörüntüle.cshtml" />
+    <Content Include="Views\Home\projeGörüntüle2.cshtml" />
     <Content Include="Views\Personel\Index.cshtml" />
     <Content Include="Views\Proje\ProjeDetay.cshtml" />
     <Content Include="Views\Personel\GörevGörüntüle.cshtml" />
     <Content Include="Views\Home\GorevAta.cshtml" />
+    <Content Include="Views\Shared\UpdateUser.cshtml" />
+    <Content Include="Views\Home\KullanıcıGüncelle.cshtml" />
+    <Content Include="Views\Personel\gorevonay.cshtml" />
+    <Content Include="Views\Home\projeGörüntüle.cshtml" />
+    <Content Include="Views\ProjePersonel\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

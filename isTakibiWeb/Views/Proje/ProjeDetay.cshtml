@@ -1,5 +1,6 @@
 ﻿
- @model Tuple<isTakibiWeb.Models.TBLGOREV,isTakibiWeb.Models.TBLPROJEPERSONEL>
+ @*@model Tuple<isTakibiWeb.Models.TBLGOREV,isTakibiWeb.Models.TBLPROJEPERSONEL>*@
+@model IEnumerable<isTakibiWeb.Models.TBLGOREV>
 
 @{
     ViewBag.Title = "ProjeDetay";
@@ -13,34 +14,50 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor( m=> m.Item2.PROJE_KOD)
+                    @Html.DisplayName( "Proje KODU")
                 </th>
                 <th>
-                    @Html.DisplayNameFor(m => m.Item2.PERSONEL_KOD)
+                    @Html.DisplayName("Personel kodu")
                 </th>
                 <th>
-                    @Html.DisplayNameFor(m => m.Item2.GOREV_TANIMI)
+                    @Html.DisplayName("Görev Tanımı")
                 </th>
                 <th>
-                    @Html.DisplayNameFor(m => m.Item1.DURUM)
+                    @Html.DisplayName("Durum")
+                </th>
+                <th>
+                    @Html.DisplayName("Tahmini Başlangıç Tarihi")
+                </th>
+                <th>
+                    @Html.DisplayName("Bitirme Süresi (gün)")
+
                 </th>
             </tr>
         </thead>
         <tbody>
+            @foreach (var m in Model)
+            {
             <tr>
                 <td>
-                    @Html.DisplayFor(m => m.Item2.PROJE_KOD)
+                    @Html.DisplayFor(modelItem => m.PROJE_KOD)
                 </td>
                 <td>
-                    @Html.DisplayFor(m => m.Item2.PERSONEL_KOD)
+                    @Html.DisplayFor(modelItem => m.PERSONEL_KOD)
                 </td>
                 <td>
-                    @Html.DisplayFor(m => m.Item2.GOREV_TANIMI)
+                    @Html.DisplayFor(modelItem => m.GOREV_TANIMI)
                 </td>
                 <td>
-                    @Html.DisplayFor(m => m.Item1.DURUM)
+                    @Html.DisplayFor(modelItem => m.DURUM)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => m.TAHMINI_BASLANGIC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => m.BITIRME_SURESI)
                 </td>
             </tr>
+            }
         </tbody>
     </table>
 </div>

@@ -1,0 +1,54 @@
+﻿@model isTakibiWeb.Models.TBLGOREV
+
+@{
+    ViewBag.Title = "gorevonay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>gorevi onayla</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <div class="form-group">
+        <div class="col-md-6">
+            @Html.EditorFor(s => s.TAHMINI_BASLANGIC, new { htmlAttributes = new { @class = "form-control ", @placeholder = "tahmini başlangıç tarihi" } })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-6">
+            @Html.EditorFor(s => s.BITIRME_SURESI, new { htmlAttributes = new { @class = "form-control ", @placeholder = "bitirme süresi" } })
+        </div>
+    </div>
+    <div>
+        @Html.HiddenFor(s => s.GOREV_KOD)
+        @Html.HiddenFor(s => s.PERSONEL_KOD)
+        @Html.HiddenFor(s => s.PROJE_KOD)
+        @Html.HiddenFor(s => s.REC_ID)
+        @Html.HiddenFor(s => s.REC_DATE)
+        @Html.HiddenFor(s => s.REC_USERNAME)
+        @Html.HiddenFor(s => s.REC_USERNO)
+        @Html.HiddenFor(s => s.GOREV_TANIMI)
+
+
+    </div>
+  
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Onayla" class="btn btn-default" />
+        </div>
+    </div>
+
+
+
+
+</div>
+}

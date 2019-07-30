@@ -21,18 +21,24 @@ namespace isTakibiWeb.Controllers
             return View();
         }
 
-        public ActionResult ProjeDetay(string projekod)
+        public ActionResult ProjeDetay(string id)
         {
-            TBLPROJEPERSONEL tBLPROJEPERSONEL = new TBLPROJEPERSONEL();
-            TBLGOREV tBLGOREV = new TBLGOREV();
-            tBLPROJEPERSONEL = entities.TBLPROJEPERSONEL.Find(projekod);
-            tBLGOREV = entities.TBLGOREV.Find(projekod);
-            return View(Tuple.Create(tBLGOREV,tBLPROJEPERSONEL));
+            
+        
+            var tBLGOREV = from f in entities.TBLGOREV
+                              select f;
+
+            tBLGOREV = tBLGOREV.Where(f => f.PROJE_KOD.Contains(id));
+            return View(tBLGOREV.ToList());
+            //return View(Tuple.Create(tBLGOREV.ToList(),tBLPROJEPERSONEL.ToList()));
         }
 
         public ActionResult ProjeSil(string projekod)
         {
             return View();
         }
+
+
+
     }
 }

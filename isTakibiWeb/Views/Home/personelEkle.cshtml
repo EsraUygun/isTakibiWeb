@@ -15,7 +15,6 @@
 
         <div class="form-group">
             <div class="col-md-6">
-                <input type="text" name="id" id="personelkod" onblur="change" />
                 @Html.EditorFor(model => model.PERSONEL_KOD, new { htmlAttributes = new { @class = "form-control", @placeholder = "Personel kodu" } })
             </div>
         </div>
@@ -57,63 +56,20 @@
 
 <script src="@Url.Content("~/bootstrap.min.js")"></script>
 <script src="@Url.Content("~/Scripts/jquery-3.3.1.min.js")" type="text/javascript"></script>
-@*<script type="text/javascript">
-        $("#PERSONEL_KOD").bind(function() {
-            var ProjectDetails =
-            {
-                "PERSONEL_KOD": val
-            };
-            $.ajax({
-
-                url: '/Home/GetPipeMaterialValues/',
-                data: JSON.stringify(ProjectDetails),
-                type: 'POST',
-                contentType: 'application/json; charset=utf-8',
-                success: function (data) {
-                    $("#PERSONEL_KOD").html(data.PERSONEL_KOD);
-                    $("#PERSONEL_ADI").html(data.PERSONEL_ADI);
-                    $("#PERSONEL_SOYADI").html(data.PERSONEL_SOYADI);
-                    $("#TEL_NO").html(data.TEL_NO);
-
-                }
-            });
-
-        });
-    
-</script>*@
-
-<script type="text/javascript">
-    
-
-    $(document).on('change', '#PERSONEL_KOD', function() {
-        var ID = $("#PERSONEL_KOD").val();
-            $.ajax({
-                url: '/Home/GetJsonTest' + ID,
-                type: 'POST',
-                dataType: 'json',
-                success: function (data) {
-                    $("#PERSONEL_ADI").html(data.PERSONEL_ADI);
-           
-                }
-            });
-    });
-</script>
 
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#personelkod").on("change", function () {
-            var val = document.getElementById("personelkod").value;
+        $("#PERSONEL_KOD").on("change", function () {
+            var val = document.getElementById("PERSONEL_KOD").value;
            $.ajax({
-                url : '/Home/Test/' + val,
+                url : '/Test/PersonelTest/' + val,
                 type:'POST',
                 dataType:'json',
-                success:function(data){
-                    $("#PersonelAdı").html(data.Ad);
-                    $("#OgrenciSoyAdi").html(data.SoyAd);
-                    $("#OgrenciNumarasi").html(data.OgrenciNo);
-                    $("#OgrenciSubesi").html(data.Sube);
-                    $("#OgrenciSinifi").html(data.Sinif);
+               success: function (data) {
+                   $("#PERSONEL_ADI").val(data.PERSONEL_ADI)
+                   $("#PERSONEL_SOYADI").val(data.PERSONEL_SOYADI);
+                   $("#TEL_NO").val(data.TEL_NO);
                 },
                 error: function (hata, ajaxOptions, thrownError) {
                     alert(hata.status);
@@ -125,34 +81,7 @@
     });
 
 </script>
-@*<script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script>
-        $(function () {
 
-            $("#PERSONEL_KOD").bind(function () {
-                var actionUrl = '/Home/GetJsonTest';
-                $.getJSON(actionUrl, function (response) {
-                    if (response != null) {
-                        var adi = response.PERSONEL_ADI;
-                        alert('bu üye kayıtlı')
-                        $("#PERSONEL_ADI").val(adi);
-                    }
-                });
-
-            });
-    </script>*@
-
-
-
-@*<script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $('#PERSONEL_KOD').blur(function () {
-                $("#PERSONEL_ADI").val("TEST");
-                alert('text');
-            });
-        });
-    </script>*@
 
 
 @section Scripts {

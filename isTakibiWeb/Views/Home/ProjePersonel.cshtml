@@ -1,9 +1,11 @@
 ﻿@model isTakibiWeb.Models.TBLPROJEPERSONEL
+    @*@model isTakibiWeb.Classes.ProjePersonelViewModel*@
 
 @{
     ViewBag.Title = "ProjePersonel";
     ViewBag.Title = "projeEkle";
     Layout = "~/Views/Shared/MyLayout.cshtml";
+    ViewBag.Title = "ProjeTest";
 }
 
 <h2> Projeye Personel Ekle </h2>
@@ -20,19 +22,21 @@
 
         <div class="form-group">
             <div class="col-md-6">
-                @Html.DropDownList("PERSONEL_KOD", null, htmlAttributes: new { @class = "form-control select-add-placeholder1" })
+                @Html.DropDownList("PROJE_KOD", ViewBag.PROJE_KOD as List<SelectListItem>, htmlAttributes: new { @class = "form-control select-add-placeholder2" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-6">
-                @Html.DropDownList("PROJE_KOD", null, htmlAttributes: new { @class = "form-control select-add-placeholder2" })
+                @Html.DropDownList("PERSONEL_KOD", ViewBag.PROJE_KOD as List<SelectListItem>, htmlAttributes: new { @class = "form-control select-add-placeholder2" })
+
             </div>
         </div>
+       
 
         <div class="form-group">
             <div class="col-md-6">
-                @Html.TextAreaFor(model => model.GOREV_TANIMI, 7,50,new { @placeholder="Görev Açıklamsı", htmlAttributes = new { @class = "form-control col-md-6"} })
+                @Html.TextAreaFor(model => model.GOREV_TANIMI, 7, 50, new { @placeholder = "Görev Açıklamsı", htmlAttributes = new { @class = "form-control col-md-6" } })
             </div>
         </div>
 
@@ -50,3 +54,5 @@
     $(".select-add-placeholder1").prepend("<option value='' disabled selected>Personel Seç</option>");
     $(".select-add-placeholder2").prepend("<option value='' disabled selected>Proje Seç</option>");
 </script>
+
+

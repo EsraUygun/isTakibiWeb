@@ -6,78 +6,78 @@
 }
 
 
-<div class="container-fluid">
-    <!-- Breadcrumbs-->
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
-        </li>
-        <li class="breadcrumb-item active">Tables</li>
-    </ol>
-    <div class="card mb-3">
-        <div class="card-header">
-            <i class="fa fa-table"></i> kullanıcı tablosu
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="~/Home/Index">Anasayfa</a>
+            </li>
+            <li class="breadcrumb-item active">Kullanıcı Listele</li>
+        </ol>
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i> kullanıcı tablosu
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
 
-                            <th>
-                                @Html.DisplayName("Personel Kod")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Kullanıcı Kod")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Kullanıcı Adı")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Şifre")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Email")
-                            </th>
-                            
-      
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                                <th>
+                                    @Html.DisplayName("Personel Kod")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Kullanıcı Kod")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Kullanıcı Adı")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Şifre")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Email")
+                                </th>
 
-                        @foreach(var item in Model)
-                        {
-                        <tr>
 
-                            <td>
-                                @Html.DisplayFor(modelitem => item.PERSONEL_KOD)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelitem => item.REC_ID)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.KULLANICI_ADI)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.SIFRE)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.E_POSTA)
-                            </td>
-                            
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.REC_ID }) 
-                                @Html.ActionLink("Details", "Details", new { id = item.REC_ID }) 
-                                @Html.ActionLink("Delete", "Delete", new { id = item.REC_ID })
-                            </td>
-                        </tr>
-                        }
-                    </tbody>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                </table>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
 
+                                    <td>
+                                        @Html.DisplayFor(modelitem => item.PERSONEL_KOD)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelitem => item.REC_ID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.KULLANICI_ADI)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SIFRE)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.E_POSTA)
+                                    </td>
+
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.REC_ID })
+                                        @Html.ActionLink("Details", "Details", new { id = item.REC_ID })
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.REC_ID })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+
+                </div>
             </div>
         </div>
     </div>
-</div>
