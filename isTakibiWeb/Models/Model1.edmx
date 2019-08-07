@@ -114,6 +114,7 @@
           <Property Name="ARDATE_1" Type="smalldatetime" />
           <Property Name="ARDATE_2" Type="smalldatetime" />
           <Property Name="ARDATE_3" Type="smalldatetime" />
+          <Property Name="DURUM" Type="varchar" MaxLength="1" />
         </EntityType>
         <EntityType Name="TBLPROJE">
           <Key>
@@ -455,6 +456,7 @@
           <NavigationProperty Name="TBLGOREV" Relationship="Self.FK__TBLGOREV__PERSON__5535A963" FromRole="TBLPERSONEL" ToRole="TBLGOREV" />
           <NavigationProperty Name="TBLKULLANICI" Relationship="Self.FK__TBLKULLAN__PERSO__7F2BE32F" FromRole="TBLPERSONEL" ToRole="TBLKULLANICI" />
           <NavigationProperty Name="TBLPROJEPERSONEL" Relationship="Self.FK__TBLPROJEP__PERSO__4E88ABD4" FromRole="TBLPERSONEL" ToRole="TBLPROJEPERSONEL" />
+          <Property Name="DURUM" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TBLPROJE">
           <Key>
@@ -774,6 +776,7 @@
           <EntitySetMapping Name="TBLPERSONEL">
             <EntityTypeMapping TypeName="isTakipModel.TBLPERSONEL">
               <MappingFragment StoreEntitySet="TBLPERSONEL">
+                <ScalarProperty Name="DURUM" ColumnName="DURUM" />
                 <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
                 <ScalarProperty Name="REC_DATE" ColumnName="REC_DATE" />
                 <ScalarProperty Name="REC_USERNAME" ColumnName="REC_USERNAME" />

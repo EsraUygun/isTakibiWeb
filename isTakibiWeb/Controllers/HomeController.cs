@@ -66,7 +66,10 @@ namespace isTakibiWeb.Controllers
             List<SelectListItem> personeller = new List<SelectListItem>();
             foreach (var item in entities.TBLPERSONEL.ToList())
             {
-                personeller.Add(new SelectListItem { Text = item.PERSONEL_KOD + "/" + item.PERSONEL_ADI + " " + item.PERSONEL_SOYADI, Value = item.PERSONEL_KOD });
+                if (item.DURUM == "1")//aktif personel olanlar
+                {
+                    personeller.Add(new SelectListItem { Text = item.PERSONEL_KOD + "/" + item.PERSONEL_ADI + " " + item.PERSONEL_SOYADI, Value = item.PERSONEL_KOD });
+                }
             }
             ViewBag.PERSONEL_KOD = personeller;
 
@@ -127,7 +130,6 @@ namespace isTakibiWeb.Controllers
 
             }
 
-
             return Json(new SelectList(personeller, "Value", "Text", JsonRequestBehavior.AllowGet));
         }
         public ActionResult  projeGörüntüle()
@@ -136,41 +138,13 @@ namespace isTakibiWeb.Controllers
             return View(entities.TBLPROJE.ToList());
         }
 
-        public ActionResult ProjeDüzenle(string projekod)
-        {
-            return View();
-        }
+      
         public ActionResult personelEkle()
         {
             return View();
             
         }
-        public ActionResult personelCheck(string personelkod)
-        {
-            TBLPERSONEL personeller = new TBLPERSONEL();
-            personeller = entities.TBLPERSONEL.Find(personelkod);
-
-            return View(personeller);
-        }
-
-        [HttpPost]
-        public JsonResult GetJsonTest(string personelkod)
-        {
-            TBLPERSONEL personeller = new TBLPERSONEL();
-            personeller = entities.TBLPERSONEL.Find(personelkod);
-            
-            return Json(personeller, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public JsonResult GetPipeMaterialValues(string id)
-        {
-
-            TBLPERSONEL personeller = new TBLPERSONEL();
-            personeller = entities.TBLPERSONEL.Find(id);
-           
-            return Json(personeller, JsonRequestBehavior.AllowGet);
-        }
+        
         [HttpPost]
         public ActionResult personelEkle(TBLPERSONEL model)
         {
@@ -182,6 +156,7 @@ namespace isTakibiWeb.Controllers
             model.REC_USERNO = (int)Session["UserId"];
             model.REC_CHANGED = "0";
             model.REC_VERSION = CreateCommon.REC_VERSION;
+            model.DURUM = "1";
             entities.TBLPERSONEL.Add(model);
 
             entities.SaveChanges();
@@ -213,46 +188,7 @@ namespace isTakibiWeb.Controllers
 
     
 
-        public ActionResult GorevAta()
-        {
-            List<SelectListItem> projekod = new List<SelectListItem>();
-            foreach (var item in entities.TBLPROJE.ToList())
-            {
-                projekod.Add(new SelectListItem { Text = item.PROJE_KOD + " / "+item.PROJE_ADI  , Value = item.PROJE_KOD });
-
-            }
-            
-            ViewBag.PROJE_KOD = projekod;
-
-            //List<SelectListItem> personeller = new List<SelectListItem>();
-            //foreach (var item in entities.TBLPERSONEL.ToList())
-            //{
-
-            //    personeller.Add(new SelectListItem { Text = item.PERSONEL_ADI + " / " + item.PERSONEL_KOD, Value = item.PERSONEL_KOD });
-
-            //}
-
-            //ViewBag.PERSONEL_KOD = personeller;
-
-            return View();
-        }
-
-        [HttpPost]
-        ActionResult GorevAta(TBLGOREV model)
-        {
-            model.REC_DATE = DateTime.Now;
-            model.REC_UPDATE = DateTime.Now;
-            model.REC_UPUSERNAME = (String)Session["UserName"];
-            model.REC_UPUSERNO = (int)Session["UserId"];
-            model.REC_USERNAME = (String)Session["UserName"];
-            model.REC_USERNO = (int)Session["UserId"];
-            model.REC_CHANGED = "0";
-            model.REC_VERSION = CreateCommon.REC_VERSION;
-            model.DURUM = '1';
-            entities.TBLGOREV.Add(model);
-            entities.SaveChanges();
-            return View();
-        }
+        
         public ActionResult personelDetails(string id)
         {
             TBLPERSONEL personeller = new TBLPERSONEL();
@@ -268,13 +204,20 @@ namespace isTakibiWeb.Controllers
             }
            
         }
-
-        public ActionResult Sil(string id)
+        //personeli pasif yap!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        public ActionResult personelSil(string id)
         {
             TBLPERSONEL personeller = new TBLPERSONEL();
             personeller = entities.TBLPERSONEL.Find(id);
-            entities.TBLPERSONEL.Remove(personeller);
+            personeller.REC_UPDATE = DateTime.Now;
+            personeller.REC_UPUSERNAME = (String)Session["UserName"];
+            personeller.REC_UPUSERNO = (int)Session["UserId"];
+            personeller.REC_CHANGED = "1";
+            personeller.REC_VERSION = CreateCommon.REC_VERSION;
+            personeller.DURUM = "0";
+            entities.Entry(personeller).State = EntityState.Modified;
             entities.SaveChanges();
+           
             return RedirectToAction("PersonelListesi");
         }
 
@@ -313,37 +256,9 @@ namespace isTakibiWeb.Controllers
 
             return RedirectToAction("personelListele");
         }
-            public ActionResult kullanıcıEkle(string personel_kod)
-        {
-            ViewBag.personel_kod = personel_kod;
-            return View();
-
-        }
-
-        [HttpPost]
-        public ActionResult kullanıcıEkle(TBLKULLANICI model)
-        {
-            model.REC_DATE = DateTime.Now;
-        
-            model.REC_UPDATE = DateTime.Now;
-            model.REC_UPUSERNAME = "esra33"; /*(string)Session["UserName"];*/
-            model.REC_UPUSERNO = 33; /*(int)Session["UserId"];*/
-            model.REC_USERNAME = "esra33";/*(string)Session["UserName"]; ;*/
-            model.REC_USERNO = 33;/*(int)Session["UserId"];*/
-            model.REC_CHANGED = "0";
-            model.REC_VERSION = CreateCommon.REC_VERSION;
-            entities.TBLKULLANICI.Add(model);
-            entities.SaveChanges();
-
-            ViewBag.Messsage = "kayıdınız başarılı bir şekilde oluşturuldu";
-            return RedirectToAction("Index");
-
-        }
-        public ActionResult kayıtControl()
-        {
-
-            return View(from isTakipEntities in entities.TBLPERSONEL.Take(20) select isTakipEntities);
-        }
+      
+       
+       
 
         [HttpGet]
         public ActionResult PersonelListele()
@@ -351,32 +266,12 @@ namespace isTakibiWeb.Controllers
             return View(entities.TBLPERSONEL.ToList());
         }
 
-        [HttpPost]
-        public ActionResult PersonelListele(string aranacakKelime)
-        {
-            var personeller = from f in entities.TBLPERSONEL
-                                             select f;
-           if(String.IsNullOrEmpty(aranacakKelime))
-            {
-                return RedirectToAction("Index");
-            }
-            if (!String.IsNullOrEmpty(aranacakKelime))
-            {
-                personeller = personeller.Where(f => f.PERSONEL_ADI.Contains(aranacakKelime) || f.PERSONEL_SOYADI.Contains(aranacakKelime));
-                
-                
-                
-            }
-            return View(personeller.ToList());
-        }
+        
         public ActionResult KullanıcıListele()
         {
             return View(from isTakipEntities in entities.TBLKULLANICI.Take(20) select isTakipEntities);
         }
-        public ActionResult perlist()
-        {
-            return View(entities.TBLPERSONEL.ToList());
-        }
+       
 
         public ActionResult Login()
         {
@@ -396,6 +291,9 @@ namespace isTakibiWeb.Controllers
                 {
                     return RedirectToAction("KullanıcıGüncelle");
                 }
+                var personel = entities.TBLPERSONEL.Where(y => y.PERSONEL_KOD.Equals(obj.PERSONEL_KOD)).FirstOrDefault();
+                Session["PersonelAdı"] = personel.PERSONEL_ADI + " " + personel.PERSONEL_SOYADI;
+
                 var yetki = entities.TBLYETKI.Where(y => y.KULLANICI_KOD.Equals(obj.REC_ID)).FirstOrDefault();
 
                 if (yetki.TAM_YETKI.Equals("1"))

@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "chart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>chart</h2>
+
+@{
+    var myChart = new Chart(width: 600, height: 400)
+        .AddTitle("Chart Title")
+        .AddSeries(
+            name: "Employee",
+            xValue: new[] { "esra", "Ahmet", "mehmet", "zafer", "figen" },
+            yValues: new[] { "2", "6", "4", "5", "3" })
+        .Write();
+}
+<div>
+    @RenderBody();
+</div>

@@ -4,7 +4,6 @@
     Layout = "~/Views/Shared/MyLayout.cshtml";
 }
 
-
 <div class="container-fluid">
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
@@ -63,10 +62,12 @@
 
                     </tfoot>
                     <tbody>
-
+                        
                         @foreach (var item in Model)
                         {
-                        <tr>
+                            if (item.DURUM == "1")
+                            {
+                             <tr>
 
                             <td>
                                 @Html.DisplayFor(modelItem => item.PERSONEL_KOD)
@@ -83,21 +84,22 @@
 
 
                             <td>
-                                @using (Html.BeginForm("personelDüzenle", "Home", new { id = item.PERSONEL_KOD } ,FormMethod.Get))
-                                {
+                                @using (Html.BeginForm("personelDüzenle", "Home", new { id = item.PERSONEL_KOD }, FormMethod.Get))
+                        {
                                     <input type="submit" value="Düzenle" />
-                                }
+                        }
                                 @using (Html.BeginForm("personelDetails", "Home", new { id = item.PERSONEL_KOD }))
                                 {
                                     <input type="submit" value="Ayrıntılar" />
-                                }
-                                @using (Html.BeginForm("Sil", "Home", new { id = item.PERSONEL_KOD }))
+                        }
+                                @using (Html.BeginForm("personelSil", "Home", new { id = item.PERSONEL_KOD }))
                                 {
-                                    <input type="submit" value="Sil"  onclick="return confirm ('Silmek istediğinize Emin misiniz?')"/>
-                                }
+                                    <input type="submit" value="Sil"  onclick="return confirm ('Personel pasif hale getirilecektir.Silmek istediğinize Emin misiniz?')"/>
+                        }
                                
                             </td>
-                        </tr>
+                           </tr>
+                            }
                         }
                     </tbody>
 

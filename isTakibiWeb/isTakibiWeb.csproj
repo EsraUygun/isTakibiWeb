@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Chart.Mvc, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Chart.Mvc.1.0.0.2\lib\net45\Chart.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -137,10 +140,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Classes\Class1.cs" />
     <Compile Include="Classes\CreateCommon.cs" />
     <Compile Include="Classes\db.cs" />
+    <Compile Include="Classes\gorevBelge.cs" />
     <Compile Include="Classes\gorevTablo.cs" />
     <Compile Include="Classes\ProjePersonelViewModel.cs" />
+    <Compile Include="Controllers\denemeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PersonelController.cs" />
     <Compile Include="Controllers\ProjeController.cs" />
@@ -356,6 +362,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -377,31 +384,30 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\MyLayout.cshtml" />
     <Content Include="Views\Home\personelEkle.cshtml" />
-    <Content Include="Views\Home\kullanıcıEkle.cshtml" />
     <Content Include="Views\Home\PersonelListele.cshtml" />
     <Content Include="Views\Home\KullanıcıListele.cshtml" />
-    <Content Include="Views\Home\perlist.cshtml" />
     <Content Include="Views\Home\projeEkle.cshtml" />
     <Content Include="Views\Home\ProjePersonel.cshtml" />
     <Content Include="Views\Shared\Login.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\personelDetails.cshtml" />
     <Content Include="Views\Home\personelDüzenle.cshtml" />
-    <Content Include="Views\Home\projeGörüntüle2.cshtml" />
     <Content Include="Views\Personel\Index.cshtml" />
-    <Content Include="Views\Proje\ProjeDetay.cshtml" />
     <Content Include="Views\Personel\GörevGörüntüle.cshtml" />
-    <Content Include="Views\Home\GorevAta.cshtml" />
     <Content Include="Views\Shared\UpdateUser.cshtml" />
     <Content Include="Views\Home\KullanıcıGüncelle.cshtml" />
     <Content Include="Views\Personel\gorevonay.cshtml" />
     <Content Include="Views\Home\projeGörüntüle.cshtml" />
-    <Content Include="Views\ProjePersonel\Index.cshtml" />
+    <Content Include="Views\ProjePersonel\gorevAta.cshtml" />
+    <Content Include="Views\Personel\gorevtamamla.cshtml" />
+    <Content Include="Views\Proje\ProjeDetay.cshtml" />
+    <Content Include="Views\Shared\chart.cshtml" />
+    <Content Include="Views\Personel\x.cshtml" />
+    <Content Include="Views\deneme\Index.cshtml" />
+    <Content Include="Views\Proje\GörevBelgeGörüntüle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

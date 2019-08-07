@@ -27,10 +27,7 @@
                             <th>
                                 @Html.DisplayName("Proje Kodu")
                             </th>
-                            <th>
-                                @Html.DisplayName("Versiyon Adı")
-                            </th>
-                            <th>
+                          <th>
                                 @Html.DisplayName("Proje Adı")
                             </th>
                             <th>
@@ -51,9 +48,7 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.PROJE_KOD)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.REC_VERSION)
-                                </td>
+                              
                                 <td>
                                     @Html.DisplayFor(modelItem => item.PROJE_ADI)
                                 </td>
@@ -71,10 +66,10 @@
                                     {
                                         <input type="submit" value="Ayrıntılar" />
                                     }
-                                    @using (Html.BeginForm("ProjeSil", "Proje", new { id = item.PROJE_KOD }))
+                                    @*@using (Html.BeginForm("ProjeSil", "Proje", new { id = item.PROJE_KOD }))
                                     {
                                         <input type="submit" value="Sil" onclick="return confirm ('Silmek istediğinize Emin misiniz?')" />
-                                    }
+                                    }*@
 
                                 </td>
                             </tr>

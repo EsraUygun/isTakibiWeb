@@ -1,0 +1,14 @@
+﻿@model List<isTakibiWeb.Classes.gorevBelge>
+
+@{
+    ViewBag.Title = "GörevBelgeGörüntüle";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+@foreach(var item in Model)
+{
+    <textarea>@item.GOREV_TANIMI</textarea>
+
+    @*Belgeyi görüntüleme ekle*@
+}
+
