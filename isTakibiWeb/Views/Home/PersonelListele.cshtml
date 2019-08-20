@@ -21,24 +21,40 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-
-                            <th>
-                                @Html.DisplayName("Personel Kodu")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Personel Adı")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Personel Soyadı")
-                            </th>
-                            <th>
-                                @Html.DisplayName("Telefon No")
-                            </th>
-                            
-
+                            <th>@Html.DisplayName("Personel Kodu")</th>
+                            <th>@Html.DisplayName("Personel Adı")</th>
+                            <th>@Html.DisplayName("Personel Soyadı")</th>
+                            <th>@Html.DisplayName("Telefon No")</th>
                             <th></th>
                         </tr>
                     </thead>
+                    <tbody>
+                        @foreach (var item in Model) {
+                            if (item.DURUM == "1") {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.PERSONEL_KOD)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.PERSONEL_ADI)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.PERSONEL_SOYADI)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.TEL_NO)</td>
+                                    <td>
+                                        @using (Html.BeginForm("personelDüzenle", "Home", new { id = item.PERSONEL_KOD }, FormMethod.Get))
+                                        {
+                                            <input type="submit" value="Düzenle" />
+                                        }
+                                        @using (Html.BeginForm("personelDetails", "Home", new { id = item.PERSONEL_KOD }))
+                                        {
+                                            <input type="submit" value="Detay" />
+                                        }
+                                        @using (Html.BeginForm("personelPasif", "Home", new { id = item.PERSONEL_KOD }))
+                                        {
+                                            <input type="submit" value="Pasif Yap" onclick="return confirm ('Personel pasif hale getirilecektir.Silmek istediğinize Emin misiniz?')" />
+                                        }
+
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
                     <tfoot>
 
                         <tr>
@@ -55,56 +71,13 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.TEL_NO)
                             </th>
-                            
+
 
                             <th></th>
                         </tr>
 
                     </tfoot>
-                    <tbody>
-                        
-                        @foreach (var item in Model)
-                        {
-                            if (item.DURUM == "1")
-                            {
-                             <tr>
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PERSONEL_KOD)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PERSONEL_ADI)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PERSONEL_SOYADI)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TEL_NO)
-                            </td>
-
-
-                            <td>
-                                @using (Html.BeginForm("personelDüzenle", "Home", new { id = item.PERSONEL_KOD }, FormMethod.Get))
-                        {
-                                    <input type="submit" value="Düzenle" />
-                        }
-                                @using (Html.BeginForm("personelDetails", "Home", new { id = item.PERSONEL_KOD }))
-                                {
-                                    <input type="submit" value="Ayrıntılar" />
-                        }
-                                @using (Html.BeginForm("personelSil", "Home", new { id = item.PERSONEL_KOD }))
-                                {
-                                    <input type="submit" value="Sil"  onclick="return confirm ('Personel pasif hale getirilecektir.Silmek istediğinize Emin misiniz?')"/>
-                        }
-                               
-                            </td>
-                           </tr>
-                            }
-                        }
-                    </tbody>
-
                 </table>
-
             </div>
         </div>
     </div>

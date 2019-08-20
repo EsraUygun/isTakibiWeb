@@ -44,6 +44,7 @@ namespace isTakibiWeb.Controllers
          
             for (int i = 0;i < dataTable.Rows.Count;i++)
             {
+
                 gorevTablo gTablo = new gorevTablo();
                 gTablo.GOREV_KOD = dataTable.Rows[i]["GOREV_KOD"].ToString();
                 gTablo.PROJE_ADI = dataTable.Rows[i]["PROJE_ADI"].ToString();
@@ -73,6 +74,7 @@ namespace isTakibiWeb.Controllers
             entities.Entry(model).State = EntityState.Modified;
             entities.SaveChanges();
             return RedirectToAction("GörevGörüntüle");
+
         }
 
         public ActionResult gorevtamamla(string id)
@@ -96,8 +98,10 @@ namespace isTakibiWeb.Controllers
             {
                 byte[] belge = new byte[file.ContentLength];
                 file.InputStream.Read(belge, 0, file.ContentLength);
-                model.BELGE = belge;
+                string path = System.IO.Path.GetFileName(file.FileName);
 
+                model.BELGE = belge;
+                model.DOSYA_YOLU = path;
                 model.REC_DATE = DateTime.Now;
                 model.REC_UPDATE = DateTime.Now;
                 model.REC_UPUSERNAME = (string)Session["UserName"];
@@ -118,7 +122,7 @@ namespace isTakibiWeb.Controllers
                 entities.SaveChanges();
             }
            
-            return View();
+            return RedirectToAction("GörevGörüntüle");
         }
         public ActionResult x()
         {

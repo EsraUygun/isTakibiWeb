@@ -1,11 +1,14 @@
-﻿@model IEnumerable<isTakibiWeb.Models.TBLPROJEPERSONEL>
+﻿@model IEnumerable<isTakibiWeb.Models.TBLGOREV>
 
 @{
     ViewBag.Title = "ProjeDetay";
     Layout = "~/Views/Shared/MyLayout.cshtml";
 }
 
-<h2>ProjeDetay</h2>
+<div>
+    <img src="@Url.Action("CharterColumn",new { id = ViewBag.PERSONEL_KOD })" alt="Chart" />
+</div>
+
 
 <table class="table">
     <tr>
@@ -21,35 +24,60 @@
         <th>
             @Html.DisplayName("GOREV TANIMI")
         </th>
+        <th>
+            @Html.DisplayName("BİTİRME TARİHİ")
+        </th>
 
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PROJE_KOD)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PERSONEL_KOD)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.REC_VERSION)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GOREV_TANIMI)
-            </td>
-            <td>
-                <form action="/Proje/GörevBelgeGörüntüle" method="post">
-                   
-                    <input type="hidden" value=@item.PERSONEL_KOD name="PERSONEL_KOD">
-                    <input type="hidden" value=@item.PROJE_KOD name="PROJE_KOD">
-                    <input type="submit" value="Görev&Belge Görüntüle" />
-                </form>
-            </td>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.PROJE_KOD)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PERSONEL_KOD)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.REC_VERSION)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.GOREV_TANIMI)
+    </td>
+    <td>
+        @{ 
+            DateTime date = Convert.ToDateTime(item.TAHMINI_BASLANGIC).AddDays(Convert.ToInt32(item.BITIRME_SURESI));
+        }
+        <label>@date</label>
+    </td>
+    @if (item.DURUM == 1)
+    {
+        <td>
+            <label style="background-color:#e9d70d">Onay Bekliyor</label>
+        </td>
+    }
+    @if (item.DURUM == 3)
+    {
+        <td>
+            <form action="/Proje/GörevBelgeGörüntüle" method="post">
 
-        </tr>
+                <input type="hidden" value=@item.PERSONEL_KOD name="PERSONEL_KOD">
+                <input type="hidden" value=@item.PROJE_KOD name="PROJE_KOD">
+                <input type="submit" value="Görev&Belge Görüntüle" />
+            </form>
+        </td>
+    }
+    @if(item.DURUM == 2 )
+    { 
+         <td>
+                 <label style="background-color:#52ae0a">Onaylandı</label>
+         </td>
+    }
+
+
+</tr>
 
 
     }
@@ -57,23 +85,23 @@
 </table>
 
 @*<script src="@Url.Content("~/bootstrap.min.js")"></script>
-<script src="@Url.Content("~/Scripts/jquery-3.3.1.min.js")" type="text/javascript"></script>
-<script>
-    $("#btnSubmit").click(function() {
+    <script src="@Url.Content("~/Scripts/jquery-3.3.1.min.js")" type="text/javascript"></script>
+    <script>
+        $("#btnSubmit").click(function() {
 
-    $.ajax({
-        type: "POST",
-        url: "/Proje/GörevBelgeGörüntüle",
-        // Add id like query string parameter like below
-        data: $('#gorevgor').serialize() ,
-        success: function() {
-       
-        alert("Survey Added");
-      
-        }
-    })
+        $.ajax({
+            type: "POST",
+            url: "/Proje/GörevBelgeGörüntüle",
+            // Add id like query string parameter like below
+            data: $('#gorevgor').serialize() ,
+            success: function() {
 
-    })
+            alert("Survey Added");
 
-</script>*@
+            }
+        })
+
+        })
+
+    </script>*@
 

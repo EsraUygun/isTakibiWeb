@@ -1,12 +1,14 @@
 ﻿using isTakibiWeb.Classes;
 using isTakibiWeb.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -15,23 +17,136 @@ namespace isTakibiWeb.Controllers
     public class HomeController : Controller
     {
         isTakipEntities entities = new isTakipEntities();
+        SqlConnection conn = new SqlConnection("Data Source=ESRA\\SQLEXPRESS; Initial Catalog=isTakip;integrated security=True;MultipleActiveResultSets=True;");
+
         public ActionResult Index()
         {
-
+            
             return View();
+        }
+        public ActionResult CharterPie()
+        {
+            var sum = from c in entities.TBLPROJE select c;
+            var comp = from c in entities.TBLPROJE where c.DURUM == 3 select c;
+            var process = from c in entities.TBLPROJE where c.DURUM == 2 select c;
+
+            ArrayList xValue = new ArrayList();
+            ArrayList yValue = new ArrayList();
+
+            
+            xValue.Add("tamamlanmış");
+            yValue.Add(comp.Count());
+            xValue.Add("tamamlanmamış");
+            yValue.Add(sum.Count() - comp.Count());
+            xValue.Add("Yapılmakta");
+            yValue.Add(process.Count());
+
+            new System.Web.Helpers.Chart(width: 400, height: 300, theme: ChartTheme.Green)
+              .AddTitle("PROJE")
+              .AddLegend("Summary")
+              .AddSeries("Default", chartType: "Pie", xValue: xValue, yValues: yValue)
+             .Write("bmp");
+
+            return null;
+        }
+        public ActionResult CharterDoughnut()
+
+        {
+            var sum = from c in entities.TBLPROJE select c;
+            var comp = from c in entities.TBLPROJE where c.DURUM == 3 select c;
+            var process = from c in entities.TBLPROJE where c.DURUM == 2 select c;
+            ArrayList xValue = new ArrayList();
+            ArrayList yValue = new ArrayList();
+
+
+            xValue.Add("tamamlanmış");
+            yValue.Add(comp.Count());
+            xValue.Add("tamamlanmamış");
+            yValue.Add(sum.Count() - comp.Count());
+            xValue.Add("Yapılmakta");
+            yValue.Add(process.Count());
+
+
+            new System.Web.Helpers.Chart(width: 400, height: 300, theme: ChartTheme.Green)
+              .AddTitle("PROJE")
+              .AddLegend("Summary")
+              .AddSeries("Default", chartType: "Doughnut", xValue: xValue, yValues: yValue)
+             .Write("bmp");
+
+            return null;
+        }
+
+        public ActionResult CharterLine()
+        {
+            var date = from c in entities.TBLDOKUMAN select c;
+
+            ArrayList xValue = new ArrayList();
+            ArrayList yValue = new ArrayList();
+
+            //xValue.Add(DateTime.Now.AddDays(-28));
+            //xValue.Add(DateTime.Now.AddDays(-21));
+            //xValue.Add(DateTime.Now.AddDays(-14));
+            //xValue.Add(DateTime.Now.AddDays(-7));
+            //xValue.Add(DateTime.Now);
+            xValue.Add("1.hafta");
+            xValue.Add("2.hafta");
+            xValue.Add("3.hafta");
+            xValue.Add("4.hafta");
+
+
+            int hafta4 = 0;
+            int hafta3 = 0;
+            int hafta2 = 0;
+            int hafta1 = 0;
+
+            foreach (var item in date)
+            {
+                if(item.BELGE!=null)
+                {
+                    if (item.REC_UPDATE < DateTime.Now.AddDays(-21) & item.REC_UPDATE > DateTime.Now.AddDays(-28))
+                    {
+                        hafta1++;
+                    }
+                    if (item.REC_UPDATE < DateTime.Now.AddDays(-14) & item.REC_UPDATE > DateTime.Now.AddDays(-21))
+                    {
+                        hafta2++;
+                    }
+                    if (item.REC_UPDATE < DateTime.Now.AddDays(-7) & item.REC_UPDATE > DateTime.Now.AddDays(-14))
+                    {
+                        hafta3++;
+                    }
+                    if (item.REC_UPDATE < DateTime.Now & item.REC_UPDATE > DateTime.Now.AddDays(-7))
+                    {
+                        hafta4++;
+                    }
+
+                }
+            }
+            yValue.Add(hafta1);
+            yValue.Add(hafta2);
+            yValue.Add(hafta3);
+            yValue.Add(hafta4);
+
+            new System.Web.Helpers.Chart(width: 400, height: 300, theme: ChartTheme.Green)
+              .AddTitle("PERSONEL GÖREV")
+              .AddLegend("Summary")
+              .AddSeries("Default", chartType: "Line", xValue: xValue, yValues: yValue)
+             .Write("bmp");
+            return null;
         }
 
         public ActionResult projeEkle()
         {
-            List<SelectListItem> PROJETURU = new List<SelectListItem>();
+            //List<SelectListItem> PROJETURU = new List<SelectListItem>();
 
-            string[] vars = { "Özel", "Masaüstü", "Web", "Mobil" };
-            foreach (var item in vars)
-            {
-                PROJETURU.Add(new SelectListItem { Text = item, Value = item });
-            }
+            //string[] vars = { "Özel", "Masaüstü", "Web", "Mobil" };
+            //foreach (var item in vars)
+            //{
+            //    PROJETURU.Add(new SelectListItem { Text = item, Value = item });
+            //}
 
-            ViewBag.PROJE_TURU = PROJETURU;
+
+            //ViewBag.PROJE_TURU = PROJETURU;
             return View();
         }
 
@@ -47,6 +162,7 @@ namespace isTakibiWeb.Controllers
             model.REC_USERNAME = (string)Session["UserName"];
             model.REC_USERNO = (int)Session["UserId"];
             model.REC_CHANGED = "0";
+            model.DURUM = 2;  //yapılmakta olan proje seçeneği
             model.REC_VERSION = CreateCommon.REC_VERSION;
             entities.TBLPROJE.Add(model);
             entities.SaveChanges();
@@ -93,10 +209,10 @@ namespace isTakibiWeb.Controllers
            
             model.REC_DATE = DateTime.Now;
             model.REC_UPDATE = DateTime.Now;
-            model.REC_UPUSERNAME = "esra33";
-            model.REC_UPUSERNO = 33;
-            model.REC_USERNAME = "esra33";
-            model.REC_USERNO = 33;
+            model.REC_UPUSERNAME = (string)Session["UserName"];
+            model.REC_UPUSERNO = (int)Session["UserId"];
+            model.REC_USERNAME = (string)Session["UserName"];
+            model.REC_USERNO = (int)Session["UserId"];
             model.REC_CHANGED = "0";
             model.REC_VERSION = CreateCommon.REC_VERSION;
             entities.TBLPROJEPERSONEL.Add(model);
@@ -109,8 +225,6 @@ namespace isTakibiWeb.Controllers
         {
             var routeValue = RouteData.Values["id"];
            
-
-            SqlConnection conn = new SqlConnection("Data Source=ESRA\\SQLEXPRESS; Initial Catalog=isTakip;integrated security=True;MultipleActiveResultSets=True;");
             conn.Open();
             SqlCommand command = new SqlCommand("SELECT  PROJEPERSONEL.PROJE_KOD ,PROJEPERSONEL.PERSONEL_KOD, PERSONEL.PERSONEL_ADI, PERSONEL.PERSONEL_SOYADI FROM TBLPERSONEL PERSONEL, TBLPROJEPERSONEL PROJEPERSONEL WHERE PROJEPERSONEL.PERSONEL_KOD=PERSONEL.PERSONEL_KOD AND PROJEPERSONEL.PROJE_KOD='"+routeValue+"'", conn);
 
@@ -137,8 +251,8 @@ namespace isTakibiWeb.Controllers
 
             return View(entities.TBLPROJE.ToList());
         }
+   
 
-      
         public ActionResult personelEkle()
         {
             return View();
@@ -158,9 +272,6 @@ namespace isTakibiWeb.Controllers
             model.REC_VERSION = CreateCommon.REC_VERSION;
             model.DURUM = "1";
             entities.TBLPERSONEL.Add(model);
-
-            entities.SaveChanges();
-
 
             TBLKULLANICI kullaniciModel = new TBLKULLANICI();
             
@@ -186,9 +297,9 @@ namespace isTakibiWeb.Controllers
             //return RedirectToAction("kullanıcıEkle", new { personel_kod = model.PERSONEL_KOD });
         }
 
-    
 
-        
+
+
         public ActionResult personelDetails(string id)
         {
             TBLPERSONEL personeller = new TBLPERSONEL();
@@ -204,8 +315,10 @@ namespace isTakibiWeb.Controllers
             }
            
         }
+
+
         //personeli pasif yap!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        public ActionResult personelSil(string id)
+        public ActionResult personelPasif(string id)
         {
             TBLPERSONEL personeller = new TBLPERSONEL();
             personeller = entities.TBLPERSONEL.Find(id);
@@ -236,7 +349,6 @@ namespace isTakibiWeb.Controllers
             {
                 return View(personeller);
             }
-
         }
         [HttpPost]
         public ActionResult personelDüzenle(TBLPERSONEL model)
@@ -250,10 +362,8 @@ namespace isTakibiWeb.Controllers
                 model.REC_VERSION = CreateCommon.REC_VERSION;
                 entities.Entry(model).State = EntityState.Modified;
                 entities.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("personelListele");
             }
-        
-
             return RedirectToAction("personelListele");
         }
       
@@ -269,7 +379,8 @@ namespace isTakibiWeb.Controllers
         
         public ActionResult KullanıcıListele()
         {
-            return View(from isTakipEntities in entities.TBLKULLANICI.Take(20) select isTakipEntities);
+            //return View(from isTakipEntities in entities.TBLKULLANICI.Take(20) select isTakipEntities);
+            return View(entities.TBLKULLANICI.ToList());
         }
        
 

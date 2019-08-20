@@ -5,117 +5,61 @@
     Layout = "~/Views/Shared/MyLayout.cshtml";
 }
 
-<h2>personel Ayrıntıları</h2>
+<fieldset style="-webkit-border-radius:8px; -moz-border-radius:8px;border-radius:8px; display:block; margin-left:100px; margin-right:500px; padding-top:0.35em;padding-bottom:0.62em;padding-left:0.75em;padding-right:0.75em;border:5px groove;">
+    <legend style="width:auto;border:none">Ayrıntılar</legend>
+    <p>
+        <b> Personel Kodu:</b>
+        @Html.DisplayFor(model => model.PERSONEL_KOD)
+    </p>
+    <p>
+        <b> Personel Adı:</b>
+        @Html.DisplayFor(model => model.PERSONEL_ADI)
+    </p>
+    <p>
+        <b>Personel Soyadı:</b>
+        @Html.DisplayFor(model => model.PERSONEL_SOYADI)
+    </p>
+    <p>
+        <b>Telefon Numarası:</b>
+        @Html.DisplayFor(model => model.TEL_NO)
+    </p>
+    <p>
+        <b>İD:</b>
+        @Html.DisplayFor(model => model.REC_ID)
+    </p>
+    <p>
+        <b>Kayıt Tarihi:</b>
+        @Html.DisplayFor(model => model.REC_DATE)
+    </p>
+    <p>
+        <b>Kayıt Yapan Kullanıcı Adı:</b>
+        @Html.DisplayFor(model => model.REC_USERNAME)
+    </p>
+    <p>
+        <b>Kayıt Yapan Kullanıcı No:</b>
+        @Html.DisplayFor(model => model.REC_USERNO)
+    <p>
+        <b>Kayıt Güncelleme Tarihi:</b>
+        @Html.DisplayFor(model => model.REC_UPDATE)
+    <p>
+        <b>Kayıt Güncelleme Yapan Kullanıcı Adı:</b>
+        @Html.DisplayFor(model => model.REC_UPUSERNAME)
+    </p>
+    <p>
+        <b>Kayıt Güncelleme Yapan Kullanıcı No:</b>
+        @Html.DisplayFor(model => model.REC_UPUSERNO)
+    </p>
+    <p>
+        <b>Güncelleme 1/0(var/yok):</b>
+        @Html.DisplayFor(model => model.REC_CHANGED)
+    </p>
+    <p>
+        <b>Versiyon:</b>
+        @Html.DisplayFor(model => model.REC_VERSION)
+    </p>
+</fieldset>
 
-<div>
-   
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayName("Personel Kodu")
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PERSONEL_KOD)
-        </dd>
-        <dt>
-            @Html.DisplayName("Personel Adı")
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PERSONEL_ADI)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Personel Soyadı")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PERSONEL_SOYADI)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Telefon No")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TEL_NO)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("İD")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.REC_ID)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Kayıt Tarihi")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.REC_DATE)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Kayıt Kullanıcı Adı")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.REC_USERNAME)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Kayıt Kullanıcı No")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.REC_USERNO)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Kayıt Güncelleme Tarihi")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.REC_UPDATE)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Kayıt Güncelleme Kullanıcı Adı")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.REC_UPUSERNAME)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Kayıt Güncelleme Kullanıcı No")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.REC_UPUSERNO)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Güncelleme 1/0(var/yok)")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.REC_CHANGED)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Versiyon No")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.REC_VERSION)
-        </dd>
-        
-
-    </dl>
-</div>
 <p>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "personelListele")
 </p>

@@ -35,6 +35,7 @@ namespace isTakibiWeb.Models
         public Nullable<System.DateTime> ARDATE_1 { get; set; }
         public Nullable<System.DateTime> ARDATE_2 { get; set; }
         public Nullable<System.DateTime> ARDATE_3 { get; set; }
+        public string DOSYA_YOLU { get; set; }
     
         public virtual TBLGOREV TBLGOREV { get; set; }
         public virtual TBLPROJE TBLPROJE { get; set; }

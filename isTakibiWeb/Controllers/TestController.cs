@@ -21,23 +21,25 @@ namespace isTakibiWeb.Controllers
 
 
         [HttpPost]
-    public JsonResult PersonelTest()
-        {
 
+
+
+
+        public JsonResult PersonelTest()
+        {
             var routeValue = RouteData.Values["id"];
             TBLPERSONEL personel = new TBLPERSONEL();
 
             SqlConnection conn = new SqlConnection("Data Source=ESRA\\SQLEXPRESS; Initial Catalog=isTakip;integrated security=True;MultipleActiveResultSets=True;");
             conn.Open();
-            SqlCommand command = new SqlCommand("SELECT  PERSONEL_KOD, PERSONEL_ADI, PERSONEL_SOYADI,TEL_NO FROM TBLPERSONEL WHERE PERSONEL_KOD ='" + routeValue + "'", conn);
+            SqlCommand command = new SqlCommand("SELECT  PERSONEL_KOD, PERSONEL_ADI, PERSONEL_SOYADI,TEL_NO FROM " +
+                                                    "TBLPERSONEL WHERE PERSONEL_KOD ='" + routeValue + "'", conn);
 
             DataTable dataTable = new DataTable();
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(command);
             sqlDataAdapter.Fill(dataTable);
             sqlDataAdapter.Dispose();
 
-
-            //count = Convert.ToInt16(command.ExecuteScalar());
             if (command != null)
             {
                 for (int i = 0; i < dataTable.Rows.Count; i++)
@@ -49,13 +51,13 @@ namespace isTakibiWeb.Controllers
                     personel.TEL_NO = dataTable.Rows[0]["TEL_NO"].ToString();
                 }
             }
-
             return Json(personel, JsonRequestBehavior.AllowGet);
 
+            //count = Convert.ToInt16(command.ExecuteScalar());
         }
 
 
-    [HttpPost]
+        [HttpPost]
     public JsonResult ProjeTest()
     {
         var routeValue = RouteData.Values["id"];

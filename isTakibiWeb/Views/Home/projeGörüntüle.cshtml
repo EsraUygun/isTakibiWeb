@@ -16,7 +16,7 @@
     </ol>
     <div class="card mb-3">
         <div class="card-header">
-            <i class="fa fa-table"></i> personel tablosu
+            <i class="fa fa-table"></i> proje tablosu
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -27,13 +27,15 @@
                             <th>
                                 @Html.DisplayName("Proje Kodu")
                             </th>
-                          <th>
+                            <th>
                                 @Html.DisplayName("Proje Adı")
                             </th>
                             <th>
                                 @Html.DisplayName("Proje Türü")
                             </th>
-
+                            <th>
+                                @Html.DisplayName("Durum")
+                            </th>
 
                             <th></th>
                         </tr>
@@ -48,28 +50,46 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.PROJE_KOD)
                                 </td>
-                              
+
                                 <td>
                                     @Html.DisplayFor(modelItem => item.PROJE_ADI)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.PROJE_TURU)
                                 </td>
-
-
                                 <td>
-                                    @using (Html.BeginForm("ProjeDüzenle", "Proje", new { id = item.PROJE_KOD }, FormMethod.Get))
+                                    @{ 
+                                        int durum =Convert.ToInt32(item.DURUM);
+                                        switch(durum){
+                                            case 0:<label>İptal edildi</label>
+                                                break;
+                                            case 1: <label>Askıya alındı</label>
+                                                break;
+                                            case 2:<label>Yapım Aşamasında</label>
+                                                break;
+                                            case 3:<label>Tamamlandı</label>
+                                                break;
+                                        }
+
+                                     }
+                                            @*@Html.DisplayFor(modelItem => item.DURUM)*@
+                                        </td>
+
+
+
+                                        <td>
+                                            @using (Html.BeginForm("ProjeDüzenle", "Proje", new { id = item.PROJE_KOD }, FormMethod.Get))
                                     {
                                         <input type="submit" value="Düzenle" />
                                     }
-                                    @using (Html.BeginForm("ProjeDetay", "Proje", new { id = item.PROJE_KOD }))
+                                            @using (Html.BeginForm("ProjeDetay", "Proje", new { id = item.PROJE_KOD }))
                                     {
                                         <input type="submit" value="Ayrıntılar" />
                                     }
                                     @*@using (Html.BeginForm("ProjeSil", "Proje", new { id = item.PROJE_KOD }))
-                                    {
-                                        <input type="submit" value="Sil" onclick="return confirm ('Silmek istediğinize Emin misiniz?')" />
-                                    }*@
+                                        {
+                                            <input type="submit" value="Sil" onclick="return confirm ('Silmek istediğinize Emin misiniz?')" />
+                                        }*@
 
                                 </td>
                             </tr>
@@ -82,6 +102,7 @@
         </div>
     </div>
 </div>
+
 
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fa fa-angle-up"></i>

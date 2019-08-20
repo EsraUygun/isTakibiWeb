@@ -16,7 +16,7 @@
 
                     <h5 class="card-title">@item.PROJE_ADI</h5>
                     <p class="card-text">@item.GOREV_TANIMI</p>
-                   @*<a class="btn btn-success" data-toggle="modal" data-target="#beyazsehir" style="background-color:#e18c8c">Onayla</a>*@
+                    @*<a class="btn btn-success" data-toggle="modal" data-target="#beyazsehir" style="background-color:#e18c8c">Onayla</a>*@
                     @using (Html.BeginForm("gorevonay", "Personel", new { id = item.GOREV_KOD }, FormMethod.Get))
                     {
                         <input type="submit" value="Onayla" class="btn btn-primary" style="background-color:#e18c8c" />
@@ -68,13 +68,13 @@
     {
 
         <div class="col-md-3 col-sm-6 mb-3">
-            <div class="card text-white bg-success o-hidden h-100">
+            <div class="card bg-success o-hidden h-100">
                 <div class="card-body">
                     <h5 class="card-title">@item.PROJE_ADI</h5>
                     <p class="card-text">@item.GOREV_TANIMI</p>
 
                     @*<a class="btn btn-success" data-toggle="modal" data-target=".exampleModal" style="background-color:#71b5a6">Tamamla</a>*@
-                  
+
                     @using (Html.BeginForm("gorevtamamla", "Personel", new { id = item.GOREV_KOD }, FormMethod.Get))
                         {
 
@@ -84,7 +84,46 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade exampleModal" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLongTitle">GÖREVİ TAMAMLA</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
 
+                        @using (Html.BeginForm("gorevtamamla", "Personel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <input type="file" id="file" name="file" />
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="gönder" class="btn btn-default" />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        }
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                        <button type="button" class="btn btn-primary" id="btnComplate">Tamamla</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
     }
@@ -117,30 +156,7 @@
 
 }
 
-<div class="modal fade exampleModal" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLongTitle">GÖREVİ TAMAMLA</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
 
-                        <input type="file" class="form-control" id="documan">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-                <button type="button" class="btn btn-primary" id="btnComplate">Tamamla</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 

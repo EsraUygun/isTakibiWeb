@@ -8,6 +8,6 @@ namespace isTakibiWeb.Classes
     public class Class1
     {
         public string personel_kod { get; set; }
-        public int bitirme_suresi {get;set;}
+        public DateTime tarih { get; set; } 
     }
 }

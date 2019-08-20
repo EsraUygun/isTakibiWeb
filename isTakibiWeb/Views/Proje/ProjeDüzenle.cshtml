@@ -1,0 +1,80 @@
+﻿@model isTakibiWeb.Models.TBLPROJE
+
+@{
+    ViewBag.Title = "ProjeDüzenle";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<h2>ProjeDüzenle</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <div class="col-md-6">
+            @Html.EditorFor(s => s.PROJE_KOD, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.PROJE_ADI, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.PROJE_TANIMI, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PROJE_TANIMI, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6">
+            @Html.DropDownListFor(model => model.PROJE_TURU, new List<SelectListItem>
+               { new SelectListItem{Text="ÖZEL", Value="özel"},
+                 new SelectListItem{Text="MASAÜSTÜ", Value="masaüstü"},
+                 new SelectListItem{Text="WEB", Value="web"},
+                 new SelectListItem{Text="MOBİL", Value="mobil"},
+
+       }, "Proje türü")
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6">
+            @Html.DropDownListFor(model => model.DURUM, new List<SelectListItem>
+               {
+                 new SelectListItem{Text="Aktif yap", Value="2"},
+                 new SelectListItem{Text="Askıya al", Value="1"},
+                 new SelectListItem{Text="İptal et", Value="0"},
+                 new SelectListItem{Text="Tamamla", Value="3"},
+
+        }, "Proje Durumu")
+        </div>
+    </div>
+
+    @Html.HiddenFor(model => model.REC_ID)
+    @Html.HiddenFor(model => model.PROJE_KOD)
+    @Html.HiddenFor(model => model.REC_DATE)
+    @Html.HiddenFor(model => model.REC_USERNAME)
+    @Html.HiddenFor(model => model.REC_USERNO)
+ 
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

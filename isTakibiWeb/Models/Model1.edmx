@@ -30,6 +30,7 @@
           <Property Name="ARDATE_1" Type="smalldatetime" />
           <Property Name="ARDATE_2" Type="smalldatetime" />
           <Property Name="ARDATE_3" Type="smalldatetime" />
+          <Property Name="DOSYA_YOLU" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="TBLGOREV">
           <Key>
@@ -142,6 +143,7 @@
           <Property Name="ARDATE_1" Type="smalldatetime" />
           <Property Name="ARDATE_2" Type="smalldatetime" />
           <Property Name="ARDATE_3" Type="smalldatetime" />
+          <Property Name="DURUM" Type="int" />
         </EntityType>
         <EntityType Name="TBLPROJEPERSONEL">
           <Key>
@@ -364,6 +366,7 @@
           <Property Name="ARDATE_3" Type="DateTime" Precision="0" />
           <NavigationProperty Name="TBLGOREV" Relationship="Self.FK__TBLDOKUMA__GOREV__5BE2A6F2" FromRole="TBLDOKUMAN" ToRole="TBLGOREV" />
           <NavigationProperty Name="TBLPROJE" Relationship="Self.FK__TBLDOKUMA__PROJE__5AEE82B9" FromRole="TBLDOKUMAN" ToRole="TBLPROJE" />
+          <Property Name="DOSYA_YOLU" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TBLGOREV">
           <Key>
@@ -487,6 +490,7 @@
           <NavigationProperty Name="TBLDOKUMAN" Relationship="Self.FK__TBLDOKUMA__PROJE__5AEE82B9" FromRole="TBLPROJE" ToRole="TBLDOKUMAN" />
           <NavigationProperty Name="TBLGOREV" Relationship="Self.FK__TBLGOREV__PROJE___5629CD9C" FromRole="TBLPROJE" ToRole="TBLGOREV" />
           <NavigationProperty Name="TBLPROJEPERSONEL" Relationship="Self.FK__TBLPROJEP__PROJE__4F7CD00D" FromRole="TBLPROJE" ToRole="TBLPROJEPERSONEL" />
+          <Property Name="DURUM" Type="Int32" />
         </EntityType>
         <EntityType Name="TBLPROJEPERSONEL">
           <Key>
@@ -690,6 +694,7 @@
           <EntitySetMapping Name="TBLDOKUMAN">
             <EntityTypeMapping TypeName="isTakipModel.TBLDOKUMAN">
               <MappingFragment StoreEntitySet="TBLDOKUMAN">
+                <ScalarProperty Name="DOSYA_YOLU" ColumnName="DOSYA_YOLU" />
                 <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
                 <ScalarProperty Name="REC_DATE" ColumnName="REC_DATE" />
                 <ScalarProperty Name="REC_USERNAME" ColumnName="REC_USERNAME" />
@@ -805,6 +810,7 @@
           <EntitySetMapping Name="TBLPROJE">
             <EntityTypeMapping TypeName="isTakipModel.TBLPROJE">
               <MappingFragment StoreEntitySet="TBLPROJE">
+                <ScalarProperty Name="DURUM" ColumnName="DURUM" />
                 <ScalarProperty Name="REC_ID" ColumnName="REC_ID" />
                 <ScalarProperty Name="REC_DATE" ColumnName="REC_DATE" />
                 <ScalarProperty Name="REC_USERNAME" ColumnName="REC_USERNAME" />
