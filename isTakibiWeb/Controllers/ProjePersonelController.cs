@@ -60,7 +60,7 @@ namespace isTakibiWeb.Controllers
                 entities.TBLGOREV.Add(model);
 
                 entities.SaveChanges();
-                return RedirectToAction("Index", "ProjePersonel");
+                return RedirectToAction("gorevAta", "ProjePersonel");
             }
             else
             {

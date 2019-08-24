@@ -27,7 +27,24 @@ namespace isTakibiWeb.Controllers
 
         public ActionResult ProjeDüzenle(string id)
         {
+            List<SelectListItem> projeturu = new List<SelectListItem>();
             
+            projeturu.Add(new SelectListItem { Text = "ÖZEL", Value = "özel" });
+            projeturu.Add(new SelectListItem { Text = "MASAÜSTÜ", Value = "masaüstü" });
+            projeturu.Add(new SelectListItem { Text = "WEB", Value = "web" });
+            projeturu.Add(new SelectListItem { Text = "MOBİL", Value = "mobil" });
+
+            ViewBag.PROJE_TURU = projeturu;
+
+            List<SelectListItem> projedurumu = new List<SelectListItem>();
+
+            projedurumu.Add(new SelectListItem { Text = "Aktif yap", Value = "2" });
+            projedurumu.Add(new SelectListItem { Text = "Askıya al", Value = "1" });
+            projedurumu.Add(new SelectListItem { Text = "İptal et", Value = "0" });
+            projedurumu.Add(new SelectListItem { Text = "Tamamla", Value = "3" });
+
+            ViewBag.PROJE_TURU = projeturu;
+            ViewBag.DURUM = projedurumu;
             return View(entities.TBLPROJE.Find(id));
         }
 
@@ -105,7 +122,7 @@ namespace isTakibiWeb.Controllers
             ////return View(Tuple.Create(tBLGOREV.ToList(),tBLPROJEPERSONEL.ToList()));
         }
 
-        [HttpPost]//????????????????????????????????
+        [HttpPost]
         public ActionResult GörevBelgeGörüntüle(string PERSONEL_KOD , string PROJE_KOD)
         {
      

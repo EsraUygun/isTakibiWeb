@@ -137,16 +137,16 @@ namespace isTakibiWeb.Controllers
 
         public ActionResult projeEkle()
         {
-            //List<SelectListItem> PROJETURU = new List<SelectListItem>();
+            List<SelectListItem> PROJETURU = new List<SelectListItem>();
 
-            //string[] vars = { "Özel", "Masaüstü", "Web", "Mobil" };
-            //foreach (var item in vars)
-            //{
-            //    PROJETURU.Add(new SelectListItem { Text = item, Value = item });
-            //}
+            string[] vars = { "özel", "masaüstü", "web", "mobil" };
+            foreach (var item in vars)
+            {
+                PROJETURU.Add(new SelectListItem { Text = item, Value = item });
+            }
 
 
-            //ViewBag.PROJE_TURU = PROJETURU;
+            ViewBag.PROJE_TURU = PROJETURU;
             return View();
         }
 

@@ -17,25 +17,35 @@
 
     <div class="form-group">
         <div class="col-md-6">
+            <label>Proje Kodu:</label>
             @Html.EditorFor(s => s.PROJE_KOD, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
         </div>
     </div>
 
     <div class="form-group">
         <div class="col-md-6">
+            <label>Proje Adı:</label>
             @Html.EditorFor(model => model.PROJE_ADI, new { htmlAttributes = new { @class = "form-control" } })
         </div>
     </div>
 
     <div class="form-group">
         <div class="col-md-6">
-            @Html.EditorFor(model => model.PROJE_TANIMI, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.PROJE_TANIMI, "", new { @class = "text-danger" })
+            <label>Proje Türü:</label>
+            @Html.DropDownList("PROJE_TURU", ViewBag.PROJE_TURU as List<SelectListItem>, htmlAttributes: new { @class = "form-control " })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-6">
+            <label>Proje Durumu:</label>
+            @Html.DropDownList("DURUM", ViewBag.DURUM as List<SelectListItem>, htmlAttributes: new { @class = "form-control " })
         </div>
     </div>
 
-    <div class="form-group">
+    @*<div class="form-group">
+
         <div class="col-md-6">
+            <label>Proje Türü:</label>
             @Html.DropDownListFor(model => model.PROJE_TURU, new List<SelectListItem>
                { new SelectListItem{Text="ÖZEL", Value="özel"},
                  new SelectListItem{Text="MASAÜSTÜ", Value="masaüstü"},
@@ -48,6 +58,7 @@
 
     <div class="form-group">
         <div class="col-md-6">
+            <label>Proje Durum:</label>
             @Html.DropDownListFor(model => model.DURUM, new List<SelectListItem>
                {
                  new SelectListItem{Text="Aktif yap", Value="2"},
@@ -57,24 +68,31 @@
 
         }, "Proje Durumu")
         </div>
+    </div>*@
+
+    <div class="form-group">
+        <label>  Proje Tanımı:</label>
+        <div class="col-md-6">
+            @Html.TextAreaFor(model => model.PROJE_TANIMI, 5, 50, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PROJE_TANIMI, "", new { @class = "text-danger" })
+        </div>
     </div>
+
+
 
     @Html.HiddenFor(model => model.REC_ID)
     @Html.HiddenFor(model => model.PROJE_KOD)
     @Html.HiddenFor(model => model.REC_DATE)
     @Html.HiddenFor(model => model.REC_USERNAME)
     @Html.HiddenFor(model => model.REC_USERNO)
- 
+
 
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+            <input type="submit" value="Kaydet" class="btn btn-default" />
         </div>
     </div>
 </div>
-}
+        }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

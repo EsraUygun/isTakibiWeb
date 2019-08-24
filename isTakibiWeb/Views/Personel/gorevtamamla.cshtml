@@ -14,9 +14,6 @@
 
         <div class="form-group">
             <div class="col-md-6">
-                @Html.Label("dosya yolu")
-                @Html.DisplayFor(model => model.GOREV_KOD)
-                @Html.DisplayFor(model => model.PROJE_KOD)
                 @Html.HiddenFor(model => model.GOREV_KOD)
                 @Html.HiddenFor(model => model.PROJE_KOD)
             </div>
@@ -24,6 +21,7 @@
 
         <div class="form-group">
             <div class="col-md-6">
+                @Html.Label("dosya yolu")
                 <input type="file" id="file" name="file" />
             </div>
 

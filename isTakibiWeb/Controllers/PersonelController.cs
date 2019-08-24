@@ -124,17 +124,8 @@ namespace isTakibiWeb.Controllers
            
             return RedirectToAction("GörevGörüntüle");
         }
-        public ActionResult x()
-        {
-            return View();
-        }
+       
 
-        [HttpPost]
-        public ActionResult taskCheck(string gorev_kod,DateTime start_date,int complate_time)
-        {
-
-
-            return View();
-        }
+      
     }
 }
